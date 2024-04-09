@@ -1,0 +1,33 @@
+.app {
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    padding: 0 20px;
+}
+.sidebar {
+    /* Sidebar styles */
+    width: 200px;
+}
+
+.content {
+    flex-grow: 1;
+}
+
+.book-list {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    /* Add styling to the table */
+    border-collapse: collapse;
+    width: 100%; /* or specify your desired width */
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}

@@ -1,0 +1,10 @@
+.Cart {
+    width: calc(69.3%);
+    height: calc(23%);
+
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    
+    border: 3px solid black;
+}

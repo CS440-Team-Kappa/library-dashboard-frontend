@@ -1,11 +1,12 @@
-.Actions {
-    width: calc(59.25%);
+.Home {
+    width: calc(20%);
     height: calc(15%);
-
+    
     position: fixed;
-    left: calc(20.20%);
-    right: calc(20%);
     top: 0;
-
+    left: 0;
+    
     border: 3px solid black;
+
+    text-align: center;
 }
