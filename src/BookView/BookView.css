@@ -1,0 +1,23 @@
+.BookView {
+    width: 80vw;
+    height: 50vh;
+
+    border: black solid 3px;
+}
+
+.searchform {
+    margin-top: 1vh;
+}
+
+.inputbar {
+    width: 71vw;
+    padding: 3px;
+    margin-right: 1vw;
+    margin-left: 1vw;
+    border: 1px solid blue;
+}
+
+.barbutton {
+    width: 5vw;
+    margin-right: 1vw;
+}

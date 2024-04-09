@@ -1,0 +1,18 @@
+.UserInfo {
+    line-height: 5px;
+    padding: 1vw 1vh;
+
+    width: 20vw;
+    height: 5vw;
+
+    border: 3px solid black;
+    border-radius: 3px;
+
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    border: black solid 2px;
+    padding: 2px;
+}
