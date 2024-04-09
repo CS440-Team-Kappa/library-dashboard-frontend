@@ -1,23 +1,27 @@
 .BookView {
-    width: 80vw;
-    height: 50vh;
+    width: calc(69.5%);
+    height: calc(60%);
+
+    position: fixed;
+    right: 0;
+    top: calc(15.5%);
 
     border: black solid 3px;
 }
 
 .searchform {
-    margin-top: 1vh;
+    margin-top: calc(1%);
 }
 
 .inputbar {
-    width: 71vw;
+    width: calc(85%);
     padding: 3px;
-    margin-right: 1vw;
-    margin-left: 1vw;
+    margin-right: calc(2%);
+    margin-left: calc(2%);
     border: 1px solid blue;
 }
 
 .barbutton {
-    width: 5vw;
-    margin-right: 1vw;
+    width: calc(5%);
+    margin-right: calc(2%);
 }

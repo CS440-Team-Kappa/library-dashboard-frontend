@@ -1,0 +1,10 @@
+.CheckedOut {
+    width: calc(30%);
+    height: calc(60%);
+
+    position: fixed;
+    top: calc(15.5%);
+    left: 0;
+
+    border: 3px solid black;
+}
