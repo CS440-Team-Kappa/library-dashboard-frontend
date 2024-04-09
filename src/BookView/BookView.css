@@ -25,3 +25,7 @@
     width: calc(5%);
     margin-right: calc(2%);
 }
+
+.booksView {
+    padding: calc(1%);
+}
