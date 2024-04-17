@@ -16,12 +16,12 @@ const BookList = ({ books }) => {
     const [isModalOpen, setModalOpen] = useState(false);
     const [bookDetails, setBookDetails] = useState({});
 
-    //Open modal or route to book details page
+    //Open modal containing book details
     const handleRowClick = async (bookId) => {
         console.log("Book ID clicked: ", bookId);
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/books/${bookId}/`);
-            setBookDetails(response.data);
+            const response = await axios.get(`http://127.0.0.1:8000/bookdetails/${bookId}/`);
+            setBookDetails(response.data[0]);
             setModalOpen(true);
         } catch (e) {
             console.error('Failed to fetch book details: ', e);
@@ -31,13 +31,25 @@ const BookList = ({ books }) => {
     return (
         <div className="book-list">
             <Table headers={headers} data={data} onRowClick={handleRowClick} />
-            <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
-                <div>
-                    <h1>{bookDetails.title || 'Book Details'}</h1>
-                    <p>Author: {bookDetails.author}</p>
-                    <p>Available Copies: {bookDetails.availableCopies}</p>
-                </div>
-            </Modal>
+            {bookDetails && (
+                <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
+                    <div>
+                        <h1>{bookDetails.Title || 'Book Details'}</h1>
+                        <p>Author: {bookDetails.Authors}</p>
+                        <p>ISBN: {bookDetails.ISBN}</p>
+                        {bookDetails.Copies && (
+                            <Table
+                                headers={['Library ID', 'Book Copy ID', 'Condition', 'Available']}
+                                data={bookDetails.Copies.map(copy => ({
+                                    id: copy.BookCopyID, //Row ID
+                                    values: [copy.LibraryID, copy.BookCopyID, copy.BookCondition, copy.CheckedOut] //Row data
+                                }))}
+                                onRowClick={() => { }} //Clicking bookCopy row currently does nothing
+                            />
+                        )}
+                    </div>
+                </Modal>
+            )}
         </div>
     );
 };
