@@ -15,19 +15,7 @@
     flex-grow: 1;
 }
 
-.book-list {
-    display: flex;
+.bookList {
+    display: block;
     justify-content: center;
-}
-
-table {
-    /* Add styling to the table */
-    border-collapse: collapse;
-    width: 100%; /* or specify your desired width */
-}
-
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
 }

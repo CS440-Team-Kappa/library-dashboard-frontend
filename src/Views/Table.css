@@ -1,0 +1,43 @@
+.tableContainer {
+    margin: auto;
+    width: 98%;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.th, .td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    margin: auto;
+    background-color: #fffff9;
+    border-top: 1px solid #eee;
+    width: 98%;
+}
+
+.button {
+    padding: 10px 20px;
+    color: white;
+    background-color: #6389eb;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:disabled {
+        background-color: #bec0ec;
+}
+
+.pageInfo {
+    font-size: 16px;
+}

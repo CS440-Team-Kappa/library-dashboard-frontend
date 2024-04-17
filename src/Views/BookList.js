@@ -29,7 +29,7 @@ const BookList = ({ books }) => {
     };
 
     return (
-        <div className="book-list">
+        <div className="bookList">
             <Table headers={headers} data={data} onRowClick={handleRowClick} />
             {bookDetails && (
                 <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>

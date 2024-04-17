@@ -27,9 +27,9 @@ function BookView() {
                 <button className='barbutton' type='submit'>Search</button>
             </form>
             <hr />
-            <div className='booksView'>
-                <BookList books={books} />
-            </div>
+        </div>
+        <div className='booksView'>
+            <BookList books={books} />
         </div>
     </div>
   );

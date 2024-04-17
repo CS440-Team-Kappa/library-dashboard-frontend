@@ -28,4 +28,6 @@
 
 .booksView {
     padding: calc(1%);
+    width: 99%;
+    display: block;
 }
