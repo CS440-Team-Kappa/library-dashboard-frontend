@@ -1,20 +1,20 @@
 import React from 'react';
 
-const Table = ({ headers, data }) => {
+const Table = ({ headers, data, onRowClick }) => {
     return (
         <table>
             <thead>
                 <tr>
-                    {headers.map(header => (
-                        <th key={header}>{header}</th>
+                    {headers.map((header, index) => (
+                        <th key={index}>{header}</th>
                     ))}
                 </tr>
             </thead>
             <tbody>
-                {data.map((row, rowIndex) => (
-                    <tr key={rowIndex}>
-                        {row.map((cell, cellIndex) => (
-                            <td key={cellIndex}>{cell}</td>
+                {data.map(item => (
+                    <tr key={item.id} onClick={() => onRowClick(item.id)} style={{ cursor: 'pointer' }}>
+                        {item.values.map((cell, index) => (
+                            <td key={index}>{cell}</td>
                         ))}
                     </tr>
                 ))}
