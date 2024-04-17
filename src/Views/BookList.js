@@ -7,7 +7,7 @@ const BookList = ({ books }) => {
     const headers = ['Title', 'Author', 'Available Copies'];
 
     //Convert book objects into array of data
-    const data = books.map(book => [book.title, book.author, book.availableCopies]);
+    const data = books.map(book => [book.Title, book.Authors, book.CopiesAvailable]);
 
     return (
         <div className="book-list">
