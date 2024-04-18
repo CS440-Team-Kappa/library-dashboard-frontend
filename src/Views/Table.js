@@ -13,6 +13,8 @@ const Table = ({ headers, data, onRowClick }) => {
     //Grab data based on current page
     const currentPageData = data.slice(currentPage * rowsPerPage, (currentPage + 1) * rowsPerPage);
 
+    console.log(data)
+
     return (
         <>
         <div className="tableContainer">
@@ -36,9 +38,9 @@ const Table = ({ headers, data, onRowClick }) => {
         </table>
         </div>
         <div className="pagination">
-            <button className="button" onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage == 0}> Previous </button>
+            <button className="button" onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage <= 0}> Previous </button>
             <span className="pageInfo"> Page {currentPage + 1} of {pageCount} </span>
-            <button className="button" onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage == pageCount - 1}> Next </button>
+            <button className="button" onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === pageCount - 1}> Next </button>
         </div>
         </>
     );
