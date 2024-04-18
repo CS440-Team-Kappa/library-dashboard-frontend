@@ -1,23 +1,20 @@
 import React from 'react';
 import './App.css';
-import Actions from './Actions/Actions';
-import BookView from './BookView/BookView';
-import UserInfo from './UserInfo/UserInfo';
-import Home from './Home/Home';
-import CheckedOut from './CheckedOut/CheckedOut';
-import CartActions from './CartActions/CartActions';
-import Cart from './Cart/Cart';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Dashboard from './Dashboard/Dashboard';
+import Login from './Login/Login';
+import CreateAccount from './CreateAccount/CreateAccount';
 
 function App() {
   return (
     <div className="App">
-      <Home />
-      <Actions />
-      <UserInfo />
-      <CheckedOut />
-      <BookView />
-      <CartActions />
-      <Cart />
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={ <Dashboard /> } />
+          <Route path="/login" element={ <Login /> } />
+          <Route path='/createaccount' element={ <CreateAccount /> } />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
