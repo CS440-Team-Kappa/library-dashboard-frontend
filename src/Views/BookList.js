@@ -18,7 +18,6 @@ const BookList = ({ books }) => {
 
     //Open modal containing book details
     const handleRowClick = async (bookId) => {
-        console.log("Book ID clicked: ", bookId);
         try {
             const response = await axios.get(`http://127.0.0.1:8000/bookdetails/${bookId}/`);
             setBookDetails(response.data[0]);

@@ -2,38 +2,61 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './BookView.css';
 import BookList from './../Views/BookList';
+import SearchBar from './../Components/SearchBar';
+import DropDownFilterList from './../Components/DropDownFilterList';
 
 function BookView() {
     const [books, setBooks] = useState([]);
     const [searchString, setSearchString] = useState('');
+    const [selectedLibraries, setSelectedLibraries] = useState([]);
+    const [libraryOptions, setLibraryOptions] = useState([]);
 
+    //Fetch library option data from backend
     useEffect(() => {
-        //Fetch data from backend
-        const fetchData = async () => {
+        const fetchLibraryOptions = async () => {
             try {
-                //if searchString present, set is as 'searchString' in params for backend purposes
-                const params = searchString ? { searchString: searchString } : {};
-                const response = await axios.get('http://127.0.0.1:8000/booklists/', {params}); //Need to change to booklists/${libraryID}/ once info available globally
-                setBooks(response.data);
+                const response = await axios.get(`http://127.0.0.1:8000/libraries/`);
+                const libOptions = response.data.map(library => ({
+                    id: library.LibraryID,
+                    label: library.LibraryName
+                }));
+                setLibraryOptions(libOptions);
             } catch (e) {
-                console.error('Error fetching data: ', e);
+            console.log('Error fetching library options: ', e);
             }
         };
 
-        fetchData();
+        fetchLibraryOptions();
+    }, []);
+
+    //Fetch book data from backend
+    useEffect(() => {
+        const fetchBooks = async () => {
+            try {
+                //if searchString present, set is as 'searchString' in params for backend purposes
+                const params = searchString ? { searchString: searchString } : {};
+                const response = await axios.get(`http://127.0.0.1:8000/booklists/`, {params}); //Need to change to booklists/${libraryID}/ once info available globally
+                setBooks(response.data);
+            } catch (e) {
+                console.error('Error fetching books: ', e);
+            }
+        };
+
+        fetchBooks();
     }, [searchString]);
+
+  //Handle adding/removing libraries
+    const handleSelectedLibraries = (libraries) => {
+        setSelectedLibraries(libraries);
+    }
+
   return (
-    <div className="BookView">
-        <div className='searchbar'>
-              <form className='searchform' onSubmit={(e) => e.preventDefault()}>
-                  <input className='inputbar' type='text' value={searchString} onChange={(e) => setSearchString(e.target.value)} placeholder="Search for a book by author or title" />
-                <button className='barbutton' type='submit'>Search</button>
-            </form>
-            <hr />
-        </div>
-        <div className='booksView'>
-            <BookList books={books} />
-        </div>
+      <div className="BookView">
+          <SearchBar searchString={searchString} setSearchString={setSearchString} />
+          <DropDownFilterList filterOptions={libraryOptions} handleOptionUpdate={handleSelectedLibraries} />
+          <div className='booksView'>
+              <BookList books={books} />
+          </div>
     </div>
   );
 }
