@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CSS/DropDownFilterList.css';
 
 const DropDownFilterList = ({ filterOptions, handleOptionUpdate }) => {
@@ -8,7 +8,7 @@ const DropDownFilterList = ({ filterOptions, handleOptionUpdate }) => {
     //Track and update currently selected options
     const [selectedOptions, setSelectedOptions] = useState([]);
 
-    //Update selected options to add/remove and pass data to parent element
+    //Update selected options
     const handleOptionToggle = (optionID) => {
         const isSelected = selectedOptions.includes(optionID);
         if (isSelected) {
@@ -17,8 +17,13 @@ const DropDownFilterList = ({ filterOptions, handleOptionUpdate }) => {
         else {
             setSelectedOptions([...selectedOptions, optionID]);
         }
-        handleOptionUpdate(selectedOptions);
     }
+
+    //Pass selected options to parent
+    useEffect(() => {
+        handleOptionUpdate(selectedOptions);
+    }, [selectedOptions, handleOptionUpdate]);
+
     return (
         <div className="DropDownFilterList">
             <button className="DropDownButton" onClick={() => setIsOpen(!isOpen)}>Libraries</button>

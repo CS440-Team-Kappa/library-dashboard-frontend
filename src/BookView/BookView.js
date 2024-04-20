@@ -33,9 +33,11 @@ function BookView() {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                //if searchString present, set is as 'searchString' in params for backend purposes
-                const params = searchString ? { searchString: searchString } : {};
-                const response = await axios.get(`http://127.0.0.1:8000/booklists/`, {params}); //Need to change to booklists/${libraryID}/ once info available globally
+                const libraryIDs = selectedLibraries.join(',');
+                console.log("Selected libraries: " + libraryIDs);
+                //if searchString present, set is as 'searchString' in params for backend purposes, set selected Library IDs as LibraryID (list)
+                const params = searchString ? { searchString: searchString, LibraryID: libraryIDs } : { LibraryID: libraryIDs };
+                const response = await axios.get(`http://127.0.0.1:8000/booklistsagg/`, {params}); //Need to change to booklists/${libraryID}/ once info available globally
                 setBooks(response.data);
             } catch (e) {
                 console.error('Error fetching books: ', e);
@@ -43,7 +45,7 @@ function BookView() {
         };
 
         fetchBooks();
-    }, [searchString]);
+    }, [searchString, selectedLibraries]);
 
   //Handle adding/removing libraries
     const handleSelectedLibraries = (libraries) => {
