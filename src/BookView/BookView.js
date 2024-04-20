@@ -8,8 +8,8 @@ import DropDownFilterList from './../Components/DropDownFilterList';
 function BookView() {
     const [books, setBooks] = useState([]);
     const [searchString, setSearchString] = useState('');
-    const [selectedLibraries, setSelectedLibraries] = useState([]);
-    const [libraryOptions, setLibraryOptions] = useState([]);
+    const [selectedLibraries, setSelectedLibraries] = useState([]); //Need to auto select user's home library if available and propagate changes to DropDownFilterList
+    const [libraryOptions, setLibraryOptions] = useState([]); 
 
     //Fetch library option data from backend
     useEffect(() => {
@@ -35,9 +35,9 @@ function BookView() {
             try {
                 const libraryIDs = selectedLibraries.join(',');
                 console.log("Selected libraries: " + libraryIDs);
-                //if searchString present, set is as 'searchString' in params for backend purposes, set selected Library IDs as LibraryID (list)
-                const params = searchString ? { searchString: searchString, LibraryID: libraryIDs } : { LibraryID: libraryIDs };
-                const response = await axios.get(`http://127.0.0.1:8000/booklistsagg/`, {params}); //Need to change to booklists/${libraryID}/ once info available globally
+                //Set selected Library IDs as LibraryID (list) for parameters
+                const params = { LibraryID: libraryIDs };
+                const response = await axios.get(`http://127.0.0.1:8000/booklistsagg/`, {params}); 
                 setBooks(response.data);
             } catch (e) {
                 console.error('Error fetching books: ', e);
@@ -52,12 +52,16 @@ function BookView() {
         setSelectedLibraries(libraries);
     }
 
+    const filteredBooks = books.filter(book =>
+        book.Title.toLowerCase().includes(searchString.toLowerCase()) || book.Authors.toLowerCase().includes(searchString.toLowerCase())
+    );
+
   return (
       <div className="BookView">
           <SearchBar searchString={searchString} setSearchString={setSearchString} />
           <DropDownFilterList filterOptions={libraryOptions} handleOptionUpdate={handleSelectedLibraries} />
           <div className='booksView'>
-              <BookList books={books} />
+              <BookList books={filteredBooks} />
           </div>
     </div>
   );
