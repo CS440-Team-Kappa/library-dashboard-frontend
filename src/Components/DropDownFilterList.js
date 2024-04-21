@@ -26,15 +26,20 @@ const DropDownFilterList = ({ filterOptions, handleOptionUpdate }) => {
 
     return (
         <div className="DropDownFilterList">
-            <button className="DropDownButton" onClick={() => setIsOpen(!isOpen)}>Libraries</button>
+            <div className="DropDownButton" onClick={() => setIsOpen(!isOpen)}>
+                Libraries
+                <span className={`ArrowIcon ${isOpen ? 'Open' : 'Closed'}`}>&#9660;</span>
+            </div>
             {isOpen && (
                 <div className="DropDownContent">
-                    {filterOptions.map(option => (
-                        <div key={option.id}>
-                            <input type="checkbox" id={option.id} checked={selectedOptions.includes(option.id)} onChange={() => handleOptionToggle(option.id)} />
-                            <label htmlFor={option.id}>{option.label}</label>
-                        </div>
-                    ))}
+                    <div className="OptionsContainer">
+                        {filterOptions.map(option => (
+                            <div key={option.id}>
+                                <input type="checkbox" id={option.id} checked={selectedOptions.includes(option.id)} onChange={() => handleOptionToggle(option.id)} />
+                                <label htmlFor={option.id}>{option.label}</label>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             )}
         </div>
