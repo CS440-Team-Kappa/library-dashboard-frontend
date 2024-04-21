@@ -39,7 +39,7 @@ const Table = ({ headers, data, onRowClick }) => {
         </div>
         <div className="pagination">
             <button className="button" onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage <= 0}> Previous </button>
-            <span className="pageInfo"> Page {currentPage + 1} of {pageCount} </span>
+            <span className="pageInfo"> Page {pageCount === 0 ? 0 : currentPage + 1} of {pageCount} </span>
             <button className="button" onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === pageCount - 1}> Next </button>
         </div>
         </>

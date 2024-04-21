@@ -33,11 +33,11 @@ function BookView() {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const libraryIDs = selectedLibraries.join(',');
-                console.log("Selected libraries: " + libraryIDs);
-                //Set selected Library IDs as LibraryID (list) for parameters
-                const params = { LibraryID: libraryIDs };
-                const response = await axios.get(`http://127.0.0.1:8000/booklistsagg/`, {params}); 
+                //Set selected Library IDs as LibraryID (list) for parameters and searchString as searchString
+                const params = new URLSearchParams();
+                params.append('searchString', searchString);
+                selectedLibraries.forEach(id => params.append('LibraryID', id));
+                const response = await axios.get(`http://127.0.0.1:8000/booklists/?${params.toString()}`);
                 setBooks(response.data);
             } catch (e) {
                 console.error('Error fetching books: ', e);
@@ -52,16 +52,12 @@ function BookView() {
         setSelectedLibraries(libraries);
     }
 
-    const filteredBooks = books.filter(book =>
-        book.Title.toLowerCase().includes(searchString.toLowerCase()) || book.Authors.toLowerCase().includes(searchString.toLowerCase())
-    );
-
   return (
       <div className="BookView">
           <SearchBar searchString={searchString} setSearchString={setSearchString} />
           <DropDownFilterList filterOptions={libraryOptions} handleOptionUpdate={handleSelectedLibraries} />
           <div className='booksView'>
-              <BookList books={filteredBooks} />
+              <BookList books={books} />
           </div>
     </div>
   );
