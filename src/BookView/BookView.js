@@ -57,7 +57,7 @@ function BookView() {
           <SearchBar searchString={searchString} setSearchString={setSearchString} />
           <DropDownFilterList filterOptions={libraryOptions} handleOptionUpdate={handleSelectedLibraries} />
           <div className='booksView'>
-              <BookList books={books} />
+              <BookList books={books} selectedLibraries={selectedLibraries} />
           </div>
     </div>
   );

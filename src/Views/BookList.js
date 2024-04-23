@@ -3,7 +3,7 @@ import axios from 'axios';
 import Table from './Table';
 import Modal from './Modal';
 
-const BookList = ({ books }) => {
+const BookList = ({ books, selectedLibraries }) => {
     //Table Headers
     const headers = ['Title', 'Author', 'Available Copies'];
 
@@ -15,12 +15,21 @@ const BookList = ({ books }) => {
 
     const [isModalOpen, setModalOpen] = useState(false);
     const [bookDetails, setBookDetails] = useState({});
+    const [bookCopyDetails, setBookCopyDetails] = useState([]);
 
-    //Open modal containing book details
+    //Open modal containing book and book copy details
     const handleRowClick = async (bookId) => {
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/bookdetails/${bookId}/`);
-            setBookDetails(response.data[0]);
+            //Get book details
+            const bookDetailsResponse = await axios.get(`http://127.0.0.1:8000/bookdetail/${bookId}/`);
+
+            //Set selected Library IDs as LibraryID (list) and BookID for parameters for book copy details fetching
+            const params = new URLSearchParams();
+            params.append('BookID', bookId);
+            selectedLibraries.forEach(id => params.append('LibraryID', id));
+            const bookCopyDetailsResponse = await axios.get(`http://127.0.0.1:8000/bookcopydetail/?${params.toString()}`);
+            setBookDetails(bookDetailsResponse.data);
+            setBookCopyDetails(bookCopyDetailsResponse.data);
             setModalOpen(true);
         } catch (e) {
             console.error('Failed to fetch book details: ', e);
@@ -36,10 +45,10 @@ const BookList = ({ books }) => {
                         <h1>{bookDetails.Title || 'Book Details'}</h1>
                         <p>Author: {bookDetails.Authors}</p>
                         <p>ISBN: {bookDetails.ISBN}</p>
-                        {bookDetails.Copies && (
+                        {bookCopyDetails && (
                             <Table
                                 headers={['Library ID', 'Book Copy ID', 'Condition', 'Available']}
-                                data={bookDetails.Copies.map(copy => ({
+                                data={bookCopyDetails.map(copy => ({
                                     id: copy.BookCopyID, //Row ID
                                     values: [copy.LibraryID, copy.BookCopyID, copy.BookCondition, copy.CheckedOut] //Row data
                                 }))}
