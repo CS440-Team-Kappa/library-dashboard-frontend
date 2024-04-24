@@ -108,6 +108,8 @@
     text-decoration: none;
     /* Makes it bold */
     font-weight: 600;
+    /* Removes weird black box that appears around Signup */
+    border: none;
 }
 
 /* When hovering mouse over link make Signup underlined */
