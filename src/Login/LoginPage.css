@@ -1,16 +1,13 @@
 /* Default settings */
-/*
-* {
+.login-default {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
-*/
-
 
 /* Centers login container and adds color */
-.app-container {
+.login-page-body {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,8 +16,6 @@
     background-size: cover;
     background-position: center;
 } 
-
-
 
 /* Surrounding containment for login box */
 .login-containment {

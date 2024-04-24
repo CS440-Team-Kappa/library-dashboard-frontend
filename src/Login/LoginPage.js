@@ -3,8 +3,10 @@ import LoginForm from './LoginForm';
 
 function LoginPage() {
     return (
-        <div className="app-container">
+        <div className = "login-default">
+        <div className="login-page-body">
             <LoginForm />
+        </div>
         </div>
     );
 }
