@@ -1,4 +1,5 @@
 /* Default settings */
+/* Keep this here as default to apply naturally to components! */
 * {
     margin: 0;
     padding: 0;
@@ -6,6 +7,8 @@
     font-family: "Poppins", sans-serif;
 }
 
+/* Apply this to LoginForm JavaScript to make sure every component has it, default will be applied since it naturally applies im this file
+/* No need to add specifically named default to LoginForm or wrap default around everything in this file
 /* Centers login container and adds color */
 .login-container-body {
     display: flex;
