@@ -69,7 +69,7 @@
     }
 
     /* References the Username and Password text */
-    .login-containment input::placeholder {
+    .login-containment .user-input::placeholder {
         color: #fff;
     }
 
