@@ -3,7 +3,7 @@ import './LoginPage.css';
 
 function LoginForm() {
     return (
-        <div className="login-page-body">
+        <div className="login-default">
             <div className="login-containment">
                 <h1>Login</h1>
                 <div className="login-input">
