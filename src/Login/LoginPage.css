@@ -1,13 +1,19 @@
 /* Default settings */
+/*
 .login-default {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
+*/
 
 /* Centers login container and adds color */
 .login-page-body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
