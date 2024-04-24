@@ -6,7 +6,7 @@
     font-family: "Poppins", sans-serif;
 
     /* Centers login container and adds color */
-    body {
+    .login-container-body {
         display: flex;
         justify-content: center;
         align-items: center;
