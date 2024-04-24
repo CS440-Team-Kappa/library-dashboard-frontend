@@ -3,7 +3,7 @@ import './LoginPage.css';
 
 function LoginForm() {
     return (
-        <div className="containment">
+        <div className="login-containment">
             <h1>Login</h1>
             <div className="login-input">
                 <input type="text" placeholder="Username" required />
