@@ -10,8 +10,7 @@
 
 
 /* Centers login container and adds color */
-/*
-body {
+.app-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,7 +19,7 @@ body {
     background-size: cover;
     background-position: center;
 } 
-*/
+
 
 
 /* Surrounding containment for login box */
