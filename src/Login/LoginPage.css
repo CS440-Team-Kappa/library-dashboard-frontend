@@ -1,15 +1,13 @@
 /* Default settings */
-/*
 .login-default {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
-*/
 
 /* Centers login container and adds color */
-.login-page-body {
+body .login-page-body {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,7 +18,7 @@
 } 
 
 /* Surrounding containment for login box */
-.login-containment {
+body .login-page-body .login-containment {
     width: 420px;
     /* background: rgb(1, 147, 147); */
     background: transparent;
@@ -38,12 +36,12 @@
 }
 
 /* Centers Login header and keeps its size consistent */
-.login-containment h1 {
+body .login-page-body .login-containment h1 {
     font-size: 36px;
     text-align: center;
 }
 
-.login-containment .login-input {
+body .login-page-body .login-containment .login-input {
     width: 100%;
     height: 50px;
     /* background: darkslategray; */
@@ -52,7 +50,7 @@
 }
 
 /* References input types (username and password boxes) */
-.login-containment input {
+body .login-page-body .login-containment input {
     /* Makes the boxes full size with back ground mini containers */
     width: 100%;
     height: 100%;
@@ -72,12 +70,12 @@
 }
 
 /* References the Username and Password text */
-.login-containment input::placeholder {
+body .login-page-body .login-containment input::placeholder {
     color: #fff;
 }
 
 /* Login button */
-.login-containment .submit-btn {
+body .login-page-body .login-containment .submit-btn {
     width: 100%;
     height: 45px;
     background: #fff;
@@ -96,7 +94,7 @@
     font-weight: 600;
 }
 
-.login-containment .create-account-link {
+body .login-page-body .login-containment .create-account-link {
     /* Made create account text slightly smaller */
     font-size: 14px;
     text-align: center;
@@ -105,7 +103,7 @@
 }
 
 /* References Signup hyperlink */
-.create-account-link p a {
+body .login-page-body .create-account-link p a {
     color: #fff;
     text-decoration: none;
     /* Makes it bold */
@@ -113,6 +111,6 @@
 }
 
 /* When hovering mouse over link make Signup underlined */
-.create-account-link p a:hover {
+body .login-page-body .create-account-link p a:hover {
     text-decoration: underline;
 }
