@@ -1,0 +1,118 @@
+/* Default settings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+
+/* Centers login container and adds color */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Changes overall background image/color */
+    background: url('LoginPageBackground.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Surrounding containment for login box */
+.containment {
+    width: 420px;
+    /* background: rgb(1, 147, 147); */
+    background: transparent;
+    /* Adds light border around the login container */
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    /* Adds blur to clearly indicate login container */
+    backdrop-filter: blur(20px);
+    /* Adds shadow to login box */
+    box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+    color: #fff;
+    /* Round corners slightly */
+    border-radius: 20px;
+    /* Space between content and container so not squished */
+    padding: 40px 40px;
+}
+
+/* Centers Login header and keeps its size consistent */
+h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+.login-input {
+    width: 100%;
+    height: 50px;
+    /* background: darkslategray; */
+    /* Padding in between username and password */
+    margin: 20px 0;
+}
+
+/* References input types (username and password boxes) */
+input {
+    /* Makes the boxes full size with back ground mini containers */
+    width: 100%;
+    height: 100%;
+    /* Makes the boxes transparent to match mini containers */
+    background: transparent;
+    border: none;
+    outline: none;
+    /* Border outlines for Username and Password */
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    /* Rounds off mini container corners */
+    border-radius: 40px;
+    /* Changes font size and color of actual typed/input username and password */
+    font-size: 16px;
+    color: #fff;
+    /* top, right, bottom, left: want to be left aligned but centered so right has more padding */
+    padding: 20px 45px 20px 20px;
+}
+
+/* References the Username and Password text */
+input::placeholder {
+    color: #fff;
+}
+
+/* Login button */
+.submit-btn {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    /* Adds shadow effect to button */
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    /* Hand icon when hovering over Login */
+    cursor: pointer;
+    /* Increases Login text size */
+    font-size: 16px;
+    /* Makes Login text dark gray */
+    color: #333;
+    /* Makes Login text bold */
+    font-weight: 600;
+}
+
+.create-account-link {
+    /* Made create account text slightly smaller */
+    font-size: 14px;
+    text-align: center;
+    /* Spaces out top of text from bottom of password container */
+    margin-top: 20px;
+}
+
+/* References Signup hyperlink */
+.create-account-link p a {
+    color: #fff;
+    text-decoration: none;
+    /* Makes it bold */
+    font-weight: 600;
+}
+
+/* When hovering mouse over link make Signup underlined */
+.create-account-link p a:hover {
+    text-decoration: underline;
+}
