@@ -1,23 +1,27 @@
 /* Default settings */
+/*
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
+*/
 
 
 /* Centers login container and adds color */
+/*
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    /* Changes overall background image/color */
     background: url('LoginPageBackground.jpg') no-repeat;
     background-size: cover;
     background-position: center;
-}
+} 
+*/
+
 
 /* Surrounding containment for login box */
 .login-containment {
