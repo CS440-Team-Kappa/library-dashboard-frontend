@@ -49,7 +49,7 @@
     }
 
     /* References input types (username and password boxes) */
-    .login-containment input {
+    .login-containment .user-input {
         /* Makes the boxes full size with back ground mini containers */
         width: 100%;
         height: 100%;
