@@ -3,7 +3,6 @@ import "./CheckedOut.css"
 function CheckedOut() {
     return (
         <div className="table-section">
-
             <table>
                 <thead>
                     <tr>
