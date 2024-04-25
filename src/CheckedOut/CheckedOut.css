@@ -1,10 +1,19 @@
-.CheckedOut {
-    width: calc(30%);
-    height: calc(60%);
+ table {
+     border-collapse: collapse;
+     border: 2px solid rgb(140 140 140);
+     font-family: sans-serif;
+     font-size: 0.8rem;
+     letter-spacing: 1px;
+ }
 
-    position: fixed;
-    top: calc(15.5%);
-    left: 0;
+ /* Need to reference this section to set table position without moving other table */
+ .table-section {
+     position: absolute;
+     top: 150px;
+     left: 50px;
+ }
 
-    border: 3px solid black;
-}
+ th, td {
+     border: 1px solid rgb(160 160 160);
+     padding: 8px 10px;
+ }
