@@ -1,0 +1,82 @@
+<html>
+<head>
+    <!-- CSS portion -->
+    <style>
+    form {
+        width: 500px;
+        margin: 20px auto;
+    }
+
+    table {
+        border-collapse: collapse;
+        /* Centers input row text in generated table */
+        text-align: center;
+    }
+    
+    /* Black outline around table and seperating lines */
+    table td, th {
+        border: solid 1px black;
+    }
+
+    /* Labels and input boxes as input for dynamic table */
+    label, input {
+        /* Starts each label and input box on new line */
+        display: block;
+        /* top, bottom given space, left, right no space */
+        margin: 10px 0;
+        font-size: 20px;
+    }
+
+</style>
+</head>
+<body>
+    <form>
+        <div class="input-row">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" />
+        </div>
+        <div class="input-row">
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author" />
+        </div>
+        <div class="input-row">
+            <label for="copies">Copies</label>
+            <input type="text" name="copies" id="copies" />
+        </div>
+        <button>Submit</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Copies</th>
+                <!-- Delete/Remove button space? -->
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script>
+        const formEl = document.querySelector('form');
+        const tbodyEl = document.querySelector('tbody');
+        function onAddBook(e) {
+            e.preventDefault();
+            const title = document.getElementById('title').value;
+            const author = document.getElementById('author').value;
+            const copies = document.getElementById('copies').value;
+            {/* Dynamically adds the row values */}
+            tbodyEl.innerHTML +=
+            <tr>
+                <td>${title}</td>
+                <td>${author}</td>
+                <td>${copies}</td>
+                <td><button class="removeBtn"></button></td>
+            </tr>
+        }
+
+        formEl.addEventListener('submit', onAddBook);
+    </script>
+</body>
+
+</html>
