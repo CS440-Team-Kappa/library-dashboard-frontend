@@ -14,7 +14,7 @@ function LoginForm() {
                 </div>
                 <button type="submit" className="submit-btn">Login</button>
                 <div className="create-account-link">
-                    <p>Create an account here: <a href="#">Signup</a></p>
+                    <p>Create an account here: <a href="/createaccount">Signup</a></p>
                 </div>
             </div>
         </div>
