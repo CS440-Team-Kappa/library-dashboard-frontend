@@ -46,8 +46,9 @@ button:hover {
 
 .loginAlert {
     text-align: center;
+    width: calc(100%);
+    height: calc(50%);
     
     position: absolute;
-    bottom: calc(45%);
-    left: calc(35%);
+    bottom: calc(15%);
 }
