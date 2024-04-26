@@ -1,37 +1,24 @@
+import BookList from "../Views/BookList";
 import "./CheckedOut.css"
 
-function CheckedOut() {
+function CheckedOut({user}) {
+    const dummyBooks = [
+        { BookID: 1, title: "Book 1", author: "Author 1", availableCopies: 5 },
+        { BookID: 2, title: "Book 2", author: "Author 2", availableCopies: 3 },
+        { BookID: 3, title: "Book 3", author: "Author 3", availableCopies: 7 }
+    ];
+
+    let booklist;
+    if (user === null) {
+        booklist = <h3>Log in to view checked out books!</h3>
+    } else {
+        booklist = <BookList className='checkedOutList' books={dummyBooks}/>
+    }
+    
     return (
-        <div className="CheckedOut">    
-            <h2 className="title">Your Checked Out Books</h2>
-            <div className="table-section">
-                <table>
-                    <thead>
-                        <tr>
-                            <th scope="col">Title</th>
-                            <th scope="col">Author</th>
-                            <th scope="col">Copies</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Harry Potter</th>
-                            <td>JK Rowling</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Lord of the Rings</th>
-                            <td>JR Tolkien</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Calculus 1</th>
-                            <td>Jimmy Buffet</td>
-                            <td>10</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div className="CheckedOut">  
+            <h2 className="title">Checked Out Books</h2>
+            <div className="booklist">{booklist}</div>
         </div>
     )
 }
