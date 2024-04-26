@@ -10,6 +10,15 @@
     position: fixed;
     top: 0;
     right: 0;
+
+    background-color: lightblue;
+    color: black;
+
+    display: flex; 
+    flex-flow: column nowrap; 
+    justify-content: center; 
+
+    border-radius: 20px;
 }
 
 a {

@@ -9,4 +9,13 @@
     border: 3px solid black;
 
     text-align: center;
+
+    background-color: lightblue;
+    color: black;
+
+    display: flex; 
+    flex-flow: column nowrap; 
+    justify-content: center; 
+
+    border-radius: 20px;
 }

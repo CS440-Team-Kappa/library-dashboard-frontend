@@ -1,19 +1,37 @@
- table {
-     border-collapse: collapse;
-     border: 2px solid rgb(140 140 140);
-     font-family: sans-serif;
-     font-size: 0.8rem;
-     letter-spacing: 1px;
- }
+.CheckedOut {
+    background-color: #fffff9;
+    width: calc(30%);
+    height: calc(60%);
+    border: 3px solid black;
+
+    position: absolute;
+    top: calc(15.5%);
+    left: 0; 
+
+    border-radius: 25px;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid rgb(140 140 140);
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
 
  /* Need to reference this section to set table position without moving other table */
- .table-section {
-     position: absolute;
-     top: 150px;
-     left: 50px;
- }
+.table-section {
+    position: absolute;
+    top: 150px;
+    left: 50px;
+}
 
- th, td {
-     border: 1px solid rgb(160 160 160);
-     padding: 8px 10px;
- }
+th, td {
+    border: 1px solid rgb(160 160 160);
+    padding: 8px 10px;
+}
+
+.title {
+    text-align: center;
+    padding-top: calc(5%);
+}

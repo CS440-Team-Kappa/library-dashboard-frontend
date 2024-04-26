@@ -7,5 +7,41 @@
     right: calc(20%);
     top: 0;
 
-    border: 3px solid black;
+    background-size: 1000px;
+}
+
+.login {
+    position: absolute;
+    left: calc(20%);
+    top: calc(25%);
+
+    border: 0;
+
+    color: black;
+    font-size: calc(150%);
+
+    padding: 10px 10px;
+    border: black 3px solid;
+    background-color: #6389eb;
+    border-radius: 25px;
+}
+
+.createAccount {
+    position: absolute;
+    right: calc(20%);
+    top: calc(25%);
+
+    border: 0;
+
+    color: black;
+    font-size: calc(150%);
+
+    padding: 10px 10px;
+    border: black 3px solid;
+    background-color: #6389eb;
+    border-radius: 25px;
+}
+
+a:hover {
+    background-color: white;
 }

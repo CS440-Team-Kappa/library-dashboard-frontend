@@ -1,5 +1,5 @@
 .Cart {
-    width: calc(69.3%);
+    width: calc(100%);
     height: calc(23%);
 
     position: fixed;
@@ -7,4 +7,35 @@
     right: 0;
     
     border: 3px solid black;
+    background-color: #fffff9;
+    border-radius: 20px;
+}
+
+.CartActions {
+    position: absolute;
+    top: calc(20%);
+    left: calc(8%);
+
+    width: calc(5%);
+    height: calc(40%);
+}
+
+.cartButtons {
+    margin: auto;
+    width: calc(200%);
+    height: 40px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: white;
+}
+
+.BookCartView {
+    position: absolute;
+    right: 0;
+    bottom: calc(10%);
+
+    width: calc(70%);
+    height: calc(80%);
 }

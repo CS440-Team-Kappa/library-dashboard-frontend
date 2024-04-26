@@ -4,18 +4,19 @@ import BookView from '../BookView/BookView';
 import UserInfo from '../UserInfo/UserInfo';
 import Home from '../Home/Home';
 import CheckedOut from '../CheckedOut/CheckedOut';
-import CartActions from '../CartActions/CartActions';
 import Cart from '../Cart/Cart';
 
-function Dashboard() {
+function Dashboard({user, onLogout}) {
+    
+    //from user session get loggin info, pass to userinfo and other components
+    
     return (
         <div className="Dashboard">
             <Home />
             <Actions />
-            <BookView />
-            <UserInfo />
-            <CheckedOut />
-            <CartActions />
+            <BookView user={user} />
+            <UserInfo name={user} />
+            <CheckedOut user={user} />
             <Cart />
         </div>
     )

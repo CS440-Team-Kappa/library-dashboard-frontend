@@ -3,8 +3,8 @@ import "./Actions.css"
 function Actions() {
     return (
         <div className="Actions">
-            <a href='/createaccount'>CreateAccount</a>
-            <a href='/login'>Login</a>
+            <a className='createAccount' href='/createaccount'>Create An Account</a>
+            <a className="login" href='/login'>Login</a>
         </div>
     )
 }
