@@ -1,5 +1,6 @@
 import BookList from "../Views/BookList";
 import "./Cart.css";
+import UserProfile from "../Components/UserProfile";
 
 function Cart({user}) {
     const dummyBooks = [
@@ -9,7 +10,7 @@ function Cart({user}) {
     ];
 
     let cart;
-    if (user == null) {
+    if (!UserProfile.isLoggedIn()) {
         cart = <h2 className="loginAlert">Please log in to check out books!</h2>
     } else {
         cart =  (<div className="CartActions">

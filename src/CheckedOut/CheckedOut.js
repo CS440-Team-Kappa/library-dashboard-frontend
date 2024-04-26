@@ -1,5 +1,6 @@
 import BookList from "../Views/BookList";
 import "./CheckedOut.css"
+import UserProfile from "../Components/UserProfile";
 
 function CheckedOut({user}) {
     const dummyBooks = [
@@ -9,8 +10,8 @@ function CheckedOut({user}) {
     ];
 
     let booklist;
-    if (user === null) {
-        booklist = <h3>Log in to view checked out books!</h3>
+    if (!UserProfile.isLoggedIn()) {
+        booklist = <h3 className="loginAlert">Log in to view checked out books!</h3>
     } else {
         booklist = <BookList className='checkedOutList' books={dummyBooks}/>
     }

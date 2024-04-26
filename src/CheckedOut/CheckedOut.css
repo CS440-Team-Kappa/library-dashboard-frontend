@@ -17,9 +17,13 @@
 }
 
 .booklist {
-    width: calc(80%);
+    width: calc(100%);
     height: calc(60%);
 
     margin: auto;
     margin-top: calc(10%);
+}
+
+.loginAlert {
+    text-align: center;
 }
