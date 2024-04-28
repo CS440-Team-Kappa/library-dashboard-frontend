@@ -1,0 +1,51 @@
+.DropDownFilterList {
+    position: relative;
+    display: inline-block;
+}
+
+.DropDownButton {
+    background-color: #f1f1f1;
+    color: #333; /* Basic color for now just to distinguish from background */
+    padding: 10px 30px 10px 20px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+}
+
+.ArrowIcon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+    .ArrowIcon.Open {
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+.DropDownContent {
+    display: block;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    max-height: 200px; /* Only tested with 2 elements */
+    overflow-y: auto;
+    width: 300px; /* To try and keep library names on one line */
+    border-top: 2px solid #ccc; /* Border separating button from drop-down content */
+}
+
+.OptionsContainer {
+    padding: 10px;
+}
+
+.DropDownContent div {
+    margin-bottom: 8px;
+    border-bottom: 1px solid #ccc; /* Border separating options */
+}
+
+    .DropDownContent div:last-child {
+        margin-bottom: 0; /* Remove bottom margin from last option */
+    }
+
