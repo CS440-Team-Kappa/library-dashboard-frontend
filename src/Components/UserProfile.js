@@ -1,6 +1,7 @@
 var UserProfile = (function() {
     var name = "";
-    var email = ""
+    var email = "";
+    var isEmployee = true;
   
     var getName = function() {
       return name;
@@ -21,11 +22,20 @@ var UserProfile = (function() {
     var isLoggedIn = function() {
       return name !== "";
     }
+
+    var setIsEmployee = function (isEmployee) {
+        isEmployee = isEmployee;
+    }
+
+    var getIsEmployee = function () {
+        return isEmployee;
+    }
   
     return {
       getName: getName,
       setName: setName,
-      isLoggedIn: isLoggedIn
+      isLoggedIn: isLoggedIn,
+      isEmployee: getIsEmployee
     };
 })();
 
