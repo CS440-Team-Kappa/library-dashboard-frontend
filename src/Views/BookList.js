@@ -47,10 +47,10 @@ const BookList = ({ books, selectedLibraries }) => {
                         <p class="ModalText">ISBN: {bookDetails.ISBN}</p>
                         {bookCopyDetails && (
                             <Table
-                                headers={['Library ID', 'Book Copy ID', 'Condition', 'Available']}
+                                headers={['Library', 'Book Copy ID', 'Condition', 'Available']}
                                 data={bookCopyDetails.map(copy => ({
                                     id: copy.BookCopyID, //Row ID
-                                    values: [copy.LibraryID, copy.BookCopyID, copy.BookCondition, copy.CheckedOut] //Row data
+                                    values: [copy.LibraryName, copy.BookCopyID, copy.BookCondition, copy.CheckedOut] //Row data
                                 }))}
                                 onRowClick={() => { }} //Clicking bookCopy row currently does nothing
                             />
