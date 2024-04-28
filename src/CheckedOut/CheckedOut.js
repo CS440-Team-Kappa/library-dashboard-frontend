@@ -1,27 +1,50 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import BookList from "../Views/BookList";
 import "./CheckedOut.css"
 import UserProfile from "../Components/UserProfile";
+import Table from '../Views/Table';
 
-function CheckedOut({user}) {
-    const dummyBooks = [
-        { BookID: 1, title: "Book 1", author: "Author 1", availableCopies: 5 },
-        { BookID: 2, title: "Book 2", author: "Author 2", availableCopies: 3 },
-        { BookID: 3, title: "Book 3", author: "Author 3", availableCopies: 7 }
-    ];
+function CheckedOut() {
+    const [mbcBooks,setMbcBooks]= useState([]);
+    useEffect(() => {
+        const fetchMbcBooks = async () => {
+            try {
+                const response = await axios.get(`http://127.0.0.1:8000/memberbookcopies/`);
+                setMbcBooks(response.data);
+            } catch (e) {
+            console.log('Error fetching book options: ', e);
+            }
+        };
 
-    let booklist;
-    if (!UserProfile.isLoggedIn()) {
-        booklist = <h3 className="loginAlert">Log in to view checked out books!</h3>
-    } else {
-        booklist = <BookList className='checkedOutList' books={dummyBooks}/>
-    }
-    
-    return (
-        <div className="CheckedOut">  
-            <h2 className="title">Checked Out Books</h2>
-            <div className="booklist">{booklist}</div>
-        </div>
-    )
+        fetchMbcBooks();
+    }, []);
+
+
+
+        
+        return (
+            <div className="CheckedOut">  
+                <h2 className="title">Checked Out Books</h2>
+                 {mbcBooks.map (mbc => (
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book Title</th>
+                                <th>Check-out Date</th>
+                                <th>Due Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr key={mbcBooks.BookCopyID}>
+                                    <td>{mbc.Title}</td>
+                                    <td>{mbc.OutDate}</td>
+                                    <td>{mbc.DueDate}</td>
+                                </tr>
+                        </tbody>
+                    </table>
+                   ))}
+            </div>
+        )
 }
-
 export default CheckedOut;
