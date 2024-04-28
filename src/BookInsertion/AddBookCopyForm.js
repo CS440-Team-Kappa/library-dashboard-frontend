@@ -10,8 +10,6 @@ const AddBookCopyForm = () => {
     const [isbn, setISBN] = useState('');
     const [description, setDescription] = useState('');
     const [authors, setAuthors] = useState(['']);
-    const [genreOptions, setGenreOptions] = useState([]);
-    const [selectedGenres, setSelectedGenres] = useState([]);
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
