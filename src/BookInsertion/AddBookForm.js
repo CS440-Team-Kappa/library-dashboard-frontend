@@ -120,9 +120,7 @@ const AddBookForm = () => {
                 ))}
                 <button type="button" onClick={addAuthorField}>Add Author</button>
             </label>
-            <label className="Label">
                 <DropDownFilterList filterOptions={genreOptions} handleOptionUpdate={handleSelectedGenres} buttonText={"Genres"} />
-            </label>
             <br />
             <button type="submit">Submit</button>
         </form>
