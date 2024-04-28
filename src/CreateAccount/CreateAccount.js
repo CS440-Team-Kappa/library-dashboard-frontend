@@ -16,9 +16,9 @@ function CreateAccount() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    axios.post(`http://127.0.0.1:8000/members/`, {paramEmail: email, paramPassword: pwd, paramFirstName: firstName, paramLastName: lastName, paramPhone: phoneNumber})
-    .then(response => console.log(response))
-    .catch(err => console.log(err))
+    axios.post(`http://127.0.0.1:8000/members/`, { paramEmail: email, paramPassword: pwd, paramFirstName: firstName, paramLastName: lastName, paramPhone: phoneNumber })
+      .then(response => console.log(response))
+      .catch(err => console.log(err))
   }
 
   return (
@@ -27,29 +27,34 @@ function CreateAccount() {
         <h1>Create Account</h1>
         <form onSubmit={handleSubmit}>
           <div className="create-input">
-            <label htmlFor="Email">Email:
+            <label htmlFor="Email">Email:</label>
+            <div className="text-input">
               <input type="text" id="Email" ref={userRef} onChange={(e) => setEmail(e.target.value)} value={email} required />
-            </label>
+            </div>
           </div>
           <div className="create-input">
-            <label htmlFor="password">Password
+            <label htmlFor="password">Password</label>
+            <div className="text-input">
               <input type="password" id="password" onChange={(e) => setPwd(e.target.value)} value={pwd} required />
-            </label>
+            </div>
           </div>
           <div className="create-input">
-          <label htmlFor="firstname">First Name
+            <label htmlFor="firstname">First Name</label>
+            <div className="text-input">
               <input type="text" id="firstname" onChange={(e) => setFirstName(e.target.value)} value={firstName} required />
-            </label>
+            </div>
           </div>
           <div className="create-input">
-          <label htmlFor="lastname">Last Name
+            <label htmlFor="lastname">Last Name</label>
+            <div className="text-input">
               <input type="text" id="lastname" onChange={(e) => setLastName(e.target.value)} value={lastName} required />
-            </label>
+            </div>
           </div>
           <div className="create-input">
-          <label htmlFor="phonenumber">Phone Number
+            <label htmlFor="phonenumber">Phone Number</label>
+            <div className="text-input">
               <input type="text" id="phonenumber" onChange={(e) => setPhoneNumber(e.target.value)} value={phoneNumber} required />
-            </label>
+            </div>
           </div>
           <button enabled="true">Register</button>
         </form>
