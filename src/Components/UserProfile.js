@@ -2,6 +2,7 @@ var UserProfile = (function() {
     var name = "";
     var email = "";
     var isEmployee = true;
+    var libraryIDs = [];
   
     var getName = function() {
       return name;
@@ -23,6 +24,14 @@ var UserProfile = (function() {
       return name !== "";
     }
 
+    var setLibraryIDs = function (libraryIDs) {
+        libraryIDs = libraryIDs;
+    }
+
+    var getLibraryIDs = function () {
+        return libraryIDs;
+    }
+
     var setIsEmployee = function (isEmployee) {
         isEmployee = isEmployee;
     }
@@ -35,7 +44,8 @@ var UserProfile = (function() {
       getName: getName,
       setName: setName,
       isLoggedIn: isLoggedIn,
-      isEmployee: getIsEmployee
+      isEmployee: getIsEmployee,
+      libraryIDs: libraryIDs;
     };
 })();
 
