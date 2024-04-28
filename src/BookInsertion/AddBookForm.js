@@ -10,8 +10,9 @@ const AddBookForm = () => {
     const [isbn, setISBN] = useState('');
     const [description, setDescription] = useState('');
     const [authors, setAuthors] = useState(['']);
-    const [genreOptions, setGenreOptions] = useState([]); 
+    const [genreOptions, setGenreOptions] = useState([]);
     const [selectedGenres, setSelectedGenres] = useState([]);
+    const [responseMessage, setResponseMessage] = useState('');
 
     //Fetch genre option data from backend
     useEffect(() => {
@@ -55,30 +56,43 @@ const AddBookForm = () => {
         setSelectedGenres(genres);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const params = new URLSearchParams();
         params.append('ISBN', isbn);
         params.append('Title', title);
         params.append('Description', description);
-        
+
         authors.forEach(author => {
             const { firstName, lastName } = parseAuthorName(author);
             params.append('AuthorFirstName', firstName);
             params.append('AuthorLastName', lastName);
         });
         selectedGenres.forEach(id => params.append('GenreID', id));
-        axios.get(`http://127.0.0.1:8000/book/?${params.toString()}`);
+        try {
+            const response = await axios.get(`http://127.0.0.1:8000/book/?${params.toString()}`);
+            setResponseMessage(response.data.ResponseMessage);
 
-        //Reset form fields
-        setTitle('');
-        setISBN('');
-        setDescription('');
-        setAuthors(['']);
+            //Clear input fields
+            setTitle('');
+            setISBN('');
+            setDescription('');
+            setAuthors(['']);
+        }
+        catch (error) {
+            setResponseMessage('Error adding book.')
+        }
+
+        setTimeout(() => setResponseMessage(''), 3000);
     }
 
     return (
-        <form class="AddForm" onSubmit={handleSubmit}>
+        <>
+        {
+            responseMessage?(
+            <div className = "ResponseMessage" > { responseMessage } </div>
+        ) : (
+        <form className="AddForm" onSubmit={handleSubmit}>
             <label className="Label">
                 Title
                 <input required type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
@@ -112,7 +126,8 @@ const AddBookForm = () => {
             <br />
             <button type="submit">Submit</button>
         </form>
-    );
+    )}
+    </>);
 
 };
 
