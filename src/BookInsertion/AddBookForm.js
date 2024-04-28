@@ -67,7 +67,7 @@ const AddBookForm = () => {
             params.append('AuthorLastName', lastName);
         });
         selectedGenres.forEach(id => params.append('GenreID', id));
-        axios.post(`http://127.0.0.1:8000/books/?${params.toString()}`);
+        axios.get(`http://127.0.0.1:8000/book/?${params.toString()}`);
 
         //Reset form fields
         setTitle('');
