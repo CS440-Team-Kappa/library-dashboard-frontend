@@ -42,9 +42,9 @@ const BookList = ({ books, selectedLibraries }) => {
             {bookDetails && (
                 <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
                     <div>
-                        <h1>{bookDetails.Title || 'Book Details'}</h1>
-                        <p>Author: {bookDetails.Authors}</p>
-                        <p>ISBN: {bookDetails.ISBN}</p>
+                        <h1 class="ModalTitle">{bookDetails.Title || 'Book Details'}</h1>
+                        <p class="ModalText">Author: {bookDetails.Authors}</p>
+                        <p class="ModalText">ISBN: {bookDetails.ISBN}</p>
                         {bookCopyDetails && (
                             <Table
                                 headers={['Library ID', 'Book Copy ID', 'Condition', 'Available']}

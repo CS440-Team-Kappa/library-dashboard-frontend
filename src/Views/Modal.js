@@ -1,16 +1,15 @@
 import React from 'react';
+import './Modal.css';
 
 const Modal = ({ isOpen, onClose, children }) => {
     if (!isOpen) return null;
 
     return (
-        <div style={{
-            position: 'fixed', top: '20%', left: '50%', transform: 'translate(-50%, -50%)',
-            backgroundColor: 'white', padding: '20px', zIndex: 1000,
-            border: '1px solid black', borderRadius: '8px'
-        }}>
-            <button onClick={onClose}>Close</button>
-            {children}
+        <div className="ModalOverlay">
+            <div className="ModalContent">
+                <div className="CloseBtn" onClick={onClose}></div>
+                {children}
+            </div>
         </div>
     );
 };

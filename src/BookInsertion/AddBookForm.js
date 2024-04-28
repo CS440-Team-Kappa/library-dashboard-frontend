@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DropDownFilterList from '../Components/DropDownFilterList';
+import './AddBookForm.css';
 
 const AddBookForm = () => {
 
@@ -77,7 +78,7 @@ const AddBookForm = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form class="AddForm" onSubmit={handleSubmit}>
             <label className="Label">
                 Title
                 <input required type="text" value={title} onChange={(e) => setTitle(e.target.value)} />

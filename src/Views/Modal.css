@@ -1,0 +1,88 @@
+.ModalOverlay {
+    position: fixed;
+    top: 0;
+    left: 10%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ModalContent {
+    position: relative;
+    background-color: white;
+    padding: 1%;
+    border: 1px solid black;
+    border-radius: 8px;
+    max-width: 60%; 
+    max-height: 60%;
+    display: flex;
+    flex-direction: row;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.CloseBtn {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+    .CloseBtn::before {
+        content: 'X';
+        font-size: 20px;
+        color: black;
+    }
+
+    .CloseBtn:hover::before {
+        color: red; 
+    }
+
+.ModalTitle {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.ModalText {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.ModalSidebar {
+    width: 200px;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+}
+
+.ModalMainContent {
+    flex: 1;
+    padding: 20px;
+}
+
+.ModalButtonContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.ModalBtn {
+    display: block;
+    margin-bottom: 10px;
+    padding: 8px 16px;
+    font-size: 16px;
+    text-align: left;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    .ModalBtn:hover {
+        background-color: #e0e0e0;
+    }
