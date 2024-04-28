@@ -3,7 +3,7 @@ import axios from 'axios';
 import DropDownFilterList from '../Components/DropDownFilterList';
 import './AddBookForm.css';
 
-const AddBookForm = () => {
+const AddBookForm = ({ LibraryID }) => {
 
     //Track input info
     const [title, setTitle] = useState('');
@@ -12,6 +12,8 @@ const AddBookForm = () => {
     const [authors, setAuthors] = useState(['']);
     const [genreOptions, setGenreOptions] = useState([]);
     const [selectedGenres, setSelectedGenres] = useState([]);
+    // Added book conditions field
+    const [bookCondition, setBookCondition] = useState('');
     const [responseMessage, setResponseMessage] = useState('');
 
     //Fetch genre option data from backend
@@ -62,6 +64,8 @@ const AddBookForm = () => {
         params.append('ISBN', isbn);
         params.append('Title', title);
         params.append('Description', description);
+        // Added book condition param
+        params.append('Book Condition', bookCondition);
 
         authors.forEach(author => {
             const { firstName, lastName } = parseAuthorName(author);
@@ -71,13 +75,26 @@ const AddBookForm = () => {
         selectedGenres.forEach(id => params.append('GenreID', id));
         try {
             const response = await axios.get(`http://127.0.0.1:8000/book/?${params.toString()}`);
-            setResponseMessage(response.data.ResponseMessage);
+            const bookExists = response.data.BookExists;
+            // Check if book exists
+            if (bookExists) {
+                // Grab IDs
+                const bookID = response.data.BookID;
+                // Pass first LibraryID (don't know if it gets it from UserProfile)
+                const libraryID = LibraryID[0];
+                // Make a copy using bookID and libraryID
+                // Example: await axios.post('http://127.0.0.1:8000/book/copy/', { BookID: bookID, LibraryID: libraryID });
+                setResponseMessage('Book copied successfully.');
+            } else {
+                setResponseMessage(response.data.ResponseMessage);
+            }
 
             //Clear input fields
             setTitle('');
             setISBN('');
             setDescription('');
             setAuthors(['']);
+            setBookCondition('');
         }
         catch (error) {
             setResponseMessage('Error adding book.')
@@ -88,44 +105,48 @@ const AddBookForm = () => {
 
     return (
         <>
-        {
-            responseMessage?(
-            <div className = "ResponseMessage" > { responseMessage } </div>
-        ) : (
-        <form className="AddForm" onSubmit={handleSubmit}>
-            <label className="Label">
-                Title
-                <input required type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-            </label>
-            <br />
-            <label className="Label">
-                ISBN:
-                <input required type="text" value={isbn} onChange={(e) => setISBN(e.target.value)} />
-            </label>
-            <br />
-            <label className="Label">
-                Description:
-                <textarea required value={description} onChange={(e) => setDescription(e.target.value)} />
-            </label>
-            <br />
-            <label className="Label">
-                Authors:
-                {authors.map((author, index) => (
-                    <input required
-                        key={index}
-                        type="text"
-                        value={author}
-                        onChange={(e) => handleAuthorChange(index, e.target.value)}
-                    />
-                ))}
-                <button type="button" onClick={addAuthorField}>Add Author</button>
-            </label>
-                <DropDownFilterList filterOptions={genreOptions} handleOptionUpdate={handleSelectedGenres} buttonText={"Genres"} />
-            <br />
-            <button type="submit">Submit</button>
-        </form>
-    )}
-    </>);
+            {
+                responseMessage ? (
+                    <div className="ResponseMessage" > {responseMessage} </div>
+                ) : (
+                    <form className="AddForm" onSubmit={handleSubmit}>
+                        <label className="Label">
+                            Title
+                            <input required type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+                        </label>
+                        <br />
+                        <label className="Label">
+                            ISBN:
+                            <input required type="text" value={isbn} onChange={(e) => setISBN(e.target.value)} />
+                        </label>
+                        <br />
+                        <label className="Label">
+                            Description:
+                            <textarea required value={description} onChange={(e) => setDescription(e.target.value)} />
+                        </label>
+                        <br />
+                        <label className="Label">
+                            Authors:
+                            {authors.map((author, index) => (
+                                <input required
+                                    key={index}
+                                    type="text"
+                                    value={author}
+                                    onChange={(e) => handleAuthorChange(index, e.target.value)}
+                                />
+                            ))}
+                            <button type="button" onClick={addAuthorField}>Add Author</button>
+                        </label>
+                        <label className="Label">
+                            Book Condition:
+                            <input required type="text" value={bookCondition} onChange={(e) => setBookCondition(e.target.value)} />
+                        </label>
+                        <DropDownFilterList filterOptions={genreOptions} handleOptionUpdate={handleSelectedGenres} buttonText={"Genres"} />
+                        <br />
+                        <button type="submit">Submit</button>
+                    </form>
+                )}
+        </>);
 
 };
 
