@@ -19,9 +19,8 @@ function CheckedOut() {
 
         fetchMbcBooks();
     }, []);
-
-
-
+  
+    
         
         return (
             <div className="CheckedOut">  
@@ -38,8 +37,8 @@ function CheckedOut() {
                         <tbody>
                         <tr key={mbcBooks.BookCopyID}>
                                     <td>{mbc.Title}</td>
-                                    <td>{mbc.OutDate}</td>
-                                    <td>{mbc.DueDate}</td>
+                                    <td>{JSON.stringify(mbc.OutDate).substring(1,11)}</td>
+                                    <td>{JSON.stringify(mbc.DueDate).substring(1,11)}</td>
                                 </tr>
                         </tbody>
                     </table>
