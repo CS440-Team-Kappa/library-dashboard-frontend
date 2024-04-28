@@ -5,6 +5,10 @@ import DropDownFilterList from './DropDownFilterList';
 const AddBookCopyForm = () => {
 
     //Track input info
+    const [libraryId, setLibraryId] = useState('');
+    const [bookId, setBookId] = useState('');
+    const [bookCondition, setBookCondition] = useState('');
+    // Maybe don't track this stuff
     const [title, setTitle] = useState('');
     const [isbn, setISBN] = useState('');
     const [description, setDescription] = useState('');
@@ -71,7 +75,9 @@ const AddBookCopyForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const params = new URLSearchParams();
-        params.append('LibraryID', '0'); // Assuming you want to hardcode the library ID for now
+        params.append('LibraryID', libraryId);
+        params.append('BookID', bookId);
+        params.append('BookCondition', bookCondition);
         params.append('Title', title);
         params.append('Description', description);
         authors.forEach(author => {
@@ -83,6 +89,9 @@ const AddBookCopyForm = () => {
         try {
             await axios.post(`http://127.0.0.1:8000/books/?${params.toString()}`);
             // Reset form fields
+            setLibraryId('');
+            setBookId('');
+            setBookCondition('');
             setTitle('');
             setISBN('');
             setDescription('');
@@ -113,32 +122,20 @@ const AddBookCopyForm = () => {
             </table>
             <form onSubmit={handleSubmit}>
                 <label className="Label">
-                    Title
-                    <input required type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+                    Library ID
+                    <input required type="text" value={libraryId} onChange={(e) => setTitle(e.target.value)} />
                 </label>
                 <br />
                 <label className="Label">
-                    ISBN:
-                    <input required type="text" value={isbn} onChange={(e) => setISBN(e.target.value)} />
+                    Book ID
+                    <input required type="text" value={bookId} onChange={(e) => setISBN(e.target.value)} />
                 </label>
                 <br />
                 <label className="Label">
-                    Description:
-                    <textarea required value={description} onChange={(e) => setDescription(e.target.value)} />
+                    Book Condition
+                    <textarea required value={bookCondition} onChange={(e) => setDescription(e.target.value)} />
                 </label>
                 <br />
-                <label className="Label">
-                    Authors:
-                    {authors.map((author, index) => (
-                        <input required
-                            key={index}
-                            type="text"
-                            value={author}
-                            onChange={(e) => handleAuthorChange(index, e.target.value)}
-                        />
-                    ))}
-                    <button type="button" onClick={addAuthorField}>Add Author</button>
-                </label>
                 <label className="Label">
                     <DropDownFilterList filterOptions={genreOptions} handleOptionUpdate={handleSelectedGenres} buttonText="Genres" />
                 </label>
