@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import DropDownFilterList from './DropDownFilterList';
 
 const AddBookCopyForm = () => {
 
     //Track input info
-    const [libraryId, setLibraryId] = useState('');
-    const [bookId, setBookId] = useState('');
     const [bookCondition, setBookCondition] = useState('');
     // Maybe don't track this stuff
     const [title, setTitle] = useState('');
@@ -16,24 +13,6 @@ const AddBookCopyForm = () => {
     const [genreOptions, setGenreOptions] = useState([]);
     const [selectedGenres, setSelectedGenres] = useState([]);
     const [books, setBooks] = useState([]);
-
-    //Fetch genre option data from backend
-    useEffect(() => {
-        const fetchGenreOptions = async () => {
-            try {
-                const response = await axios.get(`http://127.0.0.1:8000/genres/`);
-                const genrOptions = response.data.map(genre => ({
-                    id: genre.GenreID,
-                    label: genre.GenreName
-                }));
-                setGenreOptions(genrOptions);
-            } catch (e) {
-                console.log('Error fetching genre options: ', e);
-            }
-        };
-
-        fetchGenreOptions();
-    }, []);
 
     useEffect(() => {
         const fetchBooks = async () => {
@@ -68,15 +47,9 @@ const AddBookCopyForm = () => {
         setAuthors([...authors, '']);
     };
 
-    const handleSelectedGenres = (genres) => {
-        setSelectedGenres(genres);
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const params = new URLSearchParams();
-        params.append('LibraryID', libraryId);
-        params.append('BookID', bookId);
         params.append('BookCondition', bookCondition);
         params.append('Title', title);
         params.append('Description', description);
@@ -85,12 +58,9 @@ const AddBookCopyForm = () => {
             params.append('AuthorFirstName', firstName);
             params.append('AuthorLastName', lastName);
         });
-        selectedGenres.forEach(id => params.append('GenreID', id));
         try {
             await axios.post(`http://127.0.0.1:8000/books/?${params.toString()}`);
             // Reset form fields
-            setLibraryId('');
-            setBookId('');
             setBookCondition('');
             setTitle('');
             setISBN('');
@@ -122,22 +92,8 @@ const AddBookCopyForm = () => {
             </table>
             <form onSubmit={handleSubmit}>
                 <label className="Label">
-                    Library ID
-                    <input required type="text" value={libraryId} onChange={(e) => setTitle(e.target.value)} />
-                </label>
-                <br />
-                <label className="Label">
-                    Book ID
-                    <input required type="text" value={bookId} onChange={(e) => setISBN(e.target.value)} />
-                </label>
-                <br />
-                <label className="Label">
                     Book Condition
                     <textarea required value={bookCondition} onChange={(e) => setDescription(e.target.value)} />
-                </label>
-                <br />
-                <label className="Label">
-                    <DropDownFilterList filterOptions={genreOptions} handleOptionUpdate={handleSelectedGenres} buttonText="Genres" />
                 </label>
                 <br />
                 <button type="submit">Submit</button>
