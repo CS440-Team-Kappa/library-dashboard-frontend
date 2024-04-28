@@ -28,3 +28,17 @@
     text-align: center;
 }
 
+.fontSize{
+    font-size: 9pt;
+}
+
+.fontSizeTitle{
+    font-size:  10pt;
+    padding-right: 11pt;
+}
+
+
+.fontSizeHead{
+    font-size: 10pt;
+    padding-right: 8pt;
+}

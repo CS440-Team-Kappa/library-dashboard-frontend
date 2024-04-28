@@ -29,16 +29,16 @@ function CheckedOut() {
                     <table>
                         <thead>
                             <tr>
-                                <th>Book Title</th>
-                                <th>Check-out Date</th>
-                                <th>Due Date</th>
+                                <th class="fontSizeHead">Book Title</th>
+                                <th class="fontSizeHead">Check-out Date</th>
+                                <th class="fontSizeHead">Due Date</th>
                             </tr>
                         </thead>
                         <tbody>
                         <tr key={mbcBooks.BookCopyID}>
-                                    <td>{mbc.Title}</td>
-                                    <td>{JSON.stringify(mbc.OutDate).substring(1,11)}</td>
-                                    <td>{JSON.stringify(mbc.DueDate).substring(1,11)}</td>
+                                    <td class="fontSizeTitle">{mbc.Title}</td>
+                                    <td  class="fontSize">{JSON.stringify(mbc.OutDate).substring(1,11)}</td>
+                                    <td  class="fontSize">{JSON.stringify(mbc.DueDate).substring(1,11)}</td>
                                 </tr>
                         </tbody>
                     </table>
