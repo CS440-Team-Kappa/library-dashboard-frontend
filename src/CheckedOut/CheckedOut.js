@@ -20,8 +20,10 @@ function CheckedOut() {
         fetchMbcBooks();
     }, []);
   
-    
-        
+ 
+    if (!UserProfile.isLoggedIn()) {  
+        return (<div className="CheckedOut"><h2 className='loginAlert'>Log in to view checked out books!</h2></div>)
+    } else {
         return (
             <div className="CheckedOut">  
                 <h2 className="title">Checked Out Books</h2>
@@ -45,5 +47,6 @@ function CheckedOut() {
                    ))}
             </div>
         )
+    }
 }
 export default CheckedOut;
