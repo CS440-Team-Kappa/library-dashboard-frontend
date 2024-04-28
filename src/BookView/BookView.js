@@ -57,7 +57,7 @@ function BookView() {
   return (
       <div className="BookView">
           <SearchBar searchString={searchString} setSearchString={setSearchString} />
-          <DropDownFilterList filterOptions={libraryOptions} handleOptionUpdate={handleSelectedLibraries} />
+          <DropDownFilterList filterOptions={libraryOptions} handleOptionUpdate={handleSelectedLibraries} buttonText={"Library"} />
           <BookInsertion />
           <div className='booksView'>
               <BookList books={books} selectedLibraries={selectedLibraries} />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './CSS/DropDownFilterList.css';
 
-const DropDownFilterList = ({ filterOptions, handleOptionUpdate }) => {
+const DropDownFilterList = ({ filterOptions, handleOptionUpdate, buttonText }) => {
     //Track whether drop-down list is open
     const [isOpen, setIsOpen] = useState(false);
 
@@ -27,7 +27,7 @@ const DropDownFilterList = ({ filterOptions, handleOptionUpdate }) => {
     return (
         <div className="DropDownFilterList">
             <div className="DropDownButton" onClick={() => setIsOpen(!isOpen)}>
-                Libraries
+                {buttonText}
                 <span className={`ArrowIcon ${isOpen ? 'Open' : 'Closed'}`}>&#9660;</span>
             </div>
             {isOpen && (

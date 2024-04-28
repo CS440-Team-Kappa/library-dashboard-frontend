@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import DropDownFilterList from '../Components/DropDownFilterList';
 
 const AddBookForm = () => {
 
@@ -8,26 +9,35 @@ const AddBookForm = () => {
     const [isbn, setISBN] = useState('');
     const [description, setDescription] = useState('');
     const [authors, setAuthors] = useState(['']);
+    const [genreOptions, setGenreOptions] = useState([]); 
+    const [selectedGenres, setSelectedGenres] = useState([]);
+
+    //Fetch genre option data from backend
+    useEffect(() => {
+        const fetchGenreOptions = async () => {
+            try {
+                const response = await axios.get(`http://127.0.0.1:8000/genres/`);
+                const genrOptions = response.data.map(genre => ({
+                    id: genre.GenreID,
+                    label: genre.GenreName
+                }));
+                setGenreOptions(genrOptions);
+            } catch (e) {
+                console.log('Error fetching genre options: ', e);
+            }
+        };
+
+        fetchGenreOptions();
+    }, []);
 
     const parseAuthorName = (fullName) => {
         // Split the full name into parts
         const parts = fullName.split(' ');
 
         let firstName = parts[0];
-        let middleName = '';
-        let lastName = '';
+        let lastName = parts[1];
 
-        //Check for first and last name
-        if (parts.length > 1) {
-            //Last element is last name
-            lastName = parts.pop();
-
-            if (parts.length > 1) {
-                middleName = parts.slice(1).join(' ');
-            }
-        }
-
-        return { firstName, middleName, lastName };
+        return { firstName, lastName };
     };
 
     const handleAuthorChange = (index, value) => {
@@ -40,18 +50,23 @@ const AddBookForm = () => {
         setAuthors([...authors, '']);
     };
 
+    const handleSelectedGenres = (genres) => {
+        setSelectedGenres(genres);
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const params = new URLSearchParams();
         params.append('ISBN', isbn);
         params.append('Title', title);
         params.append('Description', description);
+        
         authors.forEach(author => {
-            const { firstName, middleName, lastName } = parseAuthorName(author);
+            const { firstName, lastName } = parseAuthorName(author);
             params.append('AuthorFirstName', firstName);
-            params.append('AuthorMiddleName', middleName);
             params.append('AuthorLastName', lastName);
         });
+        selectedGenres.forEach(id => params.append('GenreID', id));
         axios.post(`http://127.0.0.1:8000/books/?${params.toString()}`);
 
         //Reset form fields
@@ -89,6 +104,9 @@ const AddBookForm = () => {
                     />
                 ))}
                 <button type="button" onClick={addAuthorField}>Add Author</button>
+            </label>
+            <label className="Label">
+                <DropDownFilterList filterOptions={genreOptions} handleOptionUpdate={handleSelectedGenres} buttonText={"Genres"} />
             </label>
             <br />
             <button type="submit">Submit</button>
