@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DropDownFilterList from '../Components/DropDownFilterList';
 import './AddBookForm.css';
+import UserProfile from './../Components/UserProfile';
 
 const AddBookForm = ({ LibraryID }) => {
 
@@ -65,7 +66,8 @@ const AddBookForm = ({ LibraryID }) => {
         params.append('Title', title);
         params.append('Description', description);
         // Added book condition param
-        params.append('Book Condition', bookCondition);
+        params.append('BookCondition', bookCondition);
+        params.append('LibraryID', UserProfile.getLibraryIDs()[0]);
 
         authors.forEach(author => {
             const { firstName, lastName } = parseAuthorName(author);
@@ -84,7 +86,7 @@ const AddBookForm = ({ LibraryID }) => {
                 const libraryID = LibraryID[0];
                 // Make a copy using bookID and libraryID
                 // Example: await axios.post('http://127.0.0.1:8000/book/copy/', { BookID: bookID, LibraryID: libraryID });
-                setResponseMessage('Book copied successfully.');
+                setResponseMessage('Book created successfully.');
             } else {
                 setResponseMessage(response.data.ResponseMessage);
             }
