@@ -27,10 +27,8 @@ const BookInsertion = () => {
             {UserProfile.isEmployee() && (
                 <Modal isOpen={isModalOpen} onClose={handleModalClose}>
                     <div>
-                        <div className="ModalButtonContainer">
-                            <button className="ModalButton" onClick={() => handleOptionClick('addBook')}>Add Book</button>
-                        </div>
                         <div className="ModalMainContent">
+                            <h1 className="ModalTitle">Add a Book</h1>
                             {selectedOption === 'addBook' && (
                                     <AddBookForm />
                             )}

@@ -1,13 +1,35 @@
+import React, { useState, useEffect } from 'react'
 import BookList from "../Views/BookList";
 import "./Cart.css";
 import UserProfile from "../Components/UserProfile";
+import CartInfo from "./CartInfo";
+import axios from 'axios';
+import Table from './../Views/Table'
 
-function Cart({user}) {
-    const dummyBooks = [
-        { BookID: 1, title: "Book 1", author: "Author 1", availableCopies: 5 },
-        { BookID: 2, title: "Book 2", author: "Author 2", availableCopies: 3 },
-        { BookID: 3, title: "Book 3", author: "Author 3", availableCopies: 7 }
-    ];
+function Cart({selectedBookCopies}) {
+
+    const [selectedCopyIDs, setSelectedCopyIDs] = useState(CartInfo.getSelectedBookCopies());
+    const [selectedCopyInfo, setSelectedCopyInfo] = useState([]);
+
+    //Fetch book copy option data from backend
+    useEffect(() => {
+        const fetchCopyInfo = async () => {
+            try {
+                const params = new URLSearchParams();
+                selectedCopyIDs.forEach(id => params.append('BookCopyID', id));
+                const response = await axios.get(`http://127.0.0.1:8000/bookcopies/?${params.toString()}`);
+                const copies = response.data.map(copy => ({
+                    id: copy.BookCopyID,
+                    values: [copy.LibraryName, copy.Title, copy.BookCondition]
+                }));
+                setSelectedCopyInfo(copies);
+            } catch (e) {
+                console.log('Error fetching copy information: ', e);
+            }
+        };
+
+        fetchCopyInfo();
+    }, []);
 
     let cart;
     if (!UserProfile.isLoggedIn()) {
@@ -19,7 +41,7 @@ function Cart({user}) {
                         <button className="cartButtons">Clear Cart</button>
                     </div>
                     <div className="BookCartView">
-                        <BookList books={dummyBooks} />
+                <Table headers={['Library', 'Title', 'Condition']} data={selectedCopyInfo} onRowClick={CartInfo.updateSelectedBookCopies()} />
                     </div>
                 </div>)
     }

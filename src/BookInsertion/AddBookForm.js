@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DropDownFilterList from '../Components/DropDownFilterList';
 import './AddBookForm.css';
+import UserProfile from './../Components/UserProfile';
 
 const AddBookForm = ({ LibraryID }) => {
 
@@ -65,7 +66,8 @@ const AddBookForm = ({ LibraryID }) => {
         params.append('Title', title);
         params.append('Description', description);
         // Added book condition param
-        params.append('Book Condition', bookCondition);
+        params.append('BookCondition', bookCondition);
+        params.append('LibraryID', UserProfile.getLibraryIDs()[0]);
 
         authors.forEach(author => {
             const { firstName, lastName } = parseAuthorName(author);
@@ -75,16 +77,10 @@ const AddBookForm = ({ LibraryID }) => {
         selectedGenres.forEach(id => params.append('GenreID', id));
         try {
             const response = await axios.get(`http://127.0.0.1:8000/book/?${params.toString()}`);
-            const bookExists = response.data.BookExists;
+            const resultData = response.data
             // Check if book exists
-            if (bookExists) {
-                // Grab IDs
-                const bookID = response.data.BookID;
-                // Pass first LibraryID (don't know if it gets it from UserProfile)
-                const libraryID = LibraryID[0];
-                // Make a copy using bookID and libraryID
-                // Example: await axios.post('http://127.0.0.1:8000/book/copy/', { BookID: bookID, LibraryID: libraryID });
-                setResponseMessage('Book copied successfully.');
+            if (resultData) {
+                setResponseMessage('Book created successfully.');
             } else {
                 setResponseMessage(response.data.ResponseMessage);
             }
