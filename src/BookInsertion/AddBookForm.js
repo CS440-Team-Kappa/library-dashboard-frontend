@@ -126,6 +126,10 @@ const AddBookForm = ({ LibraryID }) => {
                         </label>
                         <br />
                         <label className="Label">
+                            Book Condition:
+                            <input required type="text" value={bookCondition} onChange={(e) => setBookCondition(e.target.value)} />
+                        </label>
+                        <label className="Label">
                             Authors:
                             {authors.map((author, index) => (
                                 <input required
@@ -136,10 +140,6 @@ const AddBookForm = ({ LibraryID }) => {
                                 />
                             ))}
                             <button type="button" onClick={addAuthorField}>Add Author</button>
-                        </label>
-                        <label className="Label">
-                            Book Condition:
-                            <input required type="text" value={bookCondition} onChange={(e) => setBookCondition(e.target.value)} />
                         </label>
                         <DropDownFilterList filterOptions={genreOptions} handleOptionUpdate={handleSelectedGenres} buttonText={"Genres"} />
                         <br />

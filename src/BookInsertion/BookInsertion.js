@@ -3,7 +3,6 @@ import Modal from '../Views/Modal';
 import axios from 'axios';
 import UserProfile from './../Components/UserProfile';
 import AddBookForm from './AddBookForm';
-import AddBookCopyForm from './AddBookCopyForm';
 import './BookInsertion.css';
 
 
@@ -30,16 +29,10 @@ const BookInsertion = () => {
                     <div>
                         <div className="ModalButtonContainer">
                             <button className="ModalButton" onClick={() => handleOptionClick('addBook')}>Add Book</button>
-                            <button className="ModalButton" onClick={() => handleOptionClick('addBookCopy')}>Add Book Copy</button>
                         </div>
                         <div className="ModalMainContent">
                             {selectedOption === 'addBook' && (
                                     <AddBookForm />
-                            )}
-                            {selectedOption === 'addBookCopy' && (
-                                <div>
-                                    <AddBookCopyForm />
-                                </div>
                             )}
                         </div>
                     </div>
