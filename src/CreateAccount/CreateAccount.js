@@ -18,7 +18,7 @@ function CreateAccount() {
     e.preventDefault()
     const params = new URLSearchParams();
     params.append('email', email)
-    params.append('password', password)
+    params.append('password', pwd)
     params.append('firstName', firstName)
     params.append('lastName', lastName)
     params.append('phoneNumber', phoneNumber)
