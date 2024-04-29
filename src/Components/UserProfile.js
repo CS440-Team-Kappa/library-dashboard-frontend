@@ -3,6 +3,7 @@ var UserProfile = (function() {
     var email = "";
     var isEmployee = true;
     var libraryIDs = [1];
+    var memberID;
   
     var getName = function() {
       return name;
@@ -39,15 +40,23 @@ var UserProfile = (function() {
     var getIsEmployee = function () {
         return isEmployee;
     }
-  
+
+    var getMemberID = function () {
+        return memberID;
+    }
+
+    var setMemberID = function (memberID) {
+        memberID = memberID;
+    }
     return {
       getName: getName,
       setName: setName,
       isLoggedIn: isLoggedIn,
       isEmployee: getIsEmployee,
       getLibraryIDs: getLibraryIDs,
-      getEmail: getEmail
-
+      getEmail: getEmail,
+      getMemberID: getMemberID,
+      setMemberID: setMemberID
     };
 })();
 
