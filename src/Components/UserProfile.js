@@ -1,5 +1,5 @@
 var UserProfile = (function() {
-    var name = "Skyler P";
+    var name = "";
     var email = "";
     var isEmployee = true;
     var libraryIDs = [1];
@@ -53,11 +53,12 @@ var UserProfile = (function() {
       setName: setName,
       isLoggedIn: isLoggedIn,
       isEmployee: getIsEmployee,
-      setIsEmployee: setIsEmployee,
+
       getLibraryIDs: getLibraryIDs,
-      getEmail: getEmail,
-      getMemberID: getMemberID,
-      setMemberID: setMemberID
+      setEmail: setEmail,
+      getEmail: getEmail
+
+
     };
 })();
 

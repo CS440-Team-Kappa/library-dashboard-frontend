@@ -72,7 +72,7 @@ function CreateAccount() {
               <input type="text" id="phonenumber" onChange={(e) => setPhoneNumber(e.target.value)} value={phoneNumber} required />
             </div>
           </div>
-          <button enabled="true">Register</button>
+          <a href='/login'><button enabled="true">Register</button></a>
         </form>
       </div>
     </div>
