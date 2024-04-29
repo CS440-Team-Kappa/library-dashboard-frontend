@@ -53,6 +53,7 @@ var UserProfile = (function() {
       setName: setName,
       isLoggedIn: isLoggedIn,
       isEmployee: getIsEmployee,
+      setIsEmployee: setIsEmployee,
       getLibraryIDs: getLibraryIDs,
       getEmail: getEmail,
       getMemberID: getMemberID,
