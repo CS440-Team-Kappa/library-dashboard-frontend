@@ -22,9 +22,8 @@ function LoginForm() {
         if(response.data.Password === pwd)
         {
             UserProfile.setName(response.data.FirstName);
-            console.log(response.data.Email);
             UserProfile.setEmail(response.data.Email);
-            console.log(UserProfile.getName());
+            UserProfile.setMemberID(response.data.MemberID);
             Navigate('/', { replace: true })
         }
       }

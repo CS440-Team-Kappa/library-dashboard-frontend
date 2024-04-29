@@ -22,9 +22,10 @@ function CreateAccount() {
     params.append('firstName', firstName)
     params.append('lastName', lastName)
     params.append('phoneNumber', phoneNumber)
-    axios.get(`http://127.0.0.1:8000/members/?${params.toString()}`)
-      .then(response => console.log(response))
-      .catch(err => console.log(err))
+    const response = await axios.get(`http://127.0.0.1:8000/members/?${params.toString()}`)
+    const params2 = new URLSearchParams();
+    params2.append('MemberID', response.data.MemberID)
+    axios.get(`http://127.0.0.1:8000/member-library/?${params2.toString()}`);
   }
 
   return (
