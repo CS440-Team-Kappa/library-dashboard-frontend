@@ -16,7 +16,13 @@ function CreateAccount() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    axios.post(`http://127.0.0.1:8000/members/`, { paramEmail: email, paramPassword: pwd, paramFirstName: firstName, paramLastName: lastName, paramPhone: phoneNumber })
+    const params = new URLSearchParams();
+    params.append('email', email)
+    params.append('password', password)
+    params.append('firstName', firstName)
+    params.append('lastName', lastName)
+    params.append('phoneNumber', phoneNumber)
+    axios.get(`http://127.0.0.1:8000/members/?${params.toString()}`)
       .then(response => console.log(response))
       .catch(err => console.log(err))
   }
