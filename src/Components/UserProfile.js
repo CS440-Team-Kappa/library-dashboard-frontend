@@ -2,7 +2,7 @@ var UserProfile = (function() {
     var name = "";
     var email = "";
     var isEmployee = true;
-    var libraryIDs = [];
+    var libraryIDs = [1];
   
     var getName = function() {
       return name;
@@ -45,7 +45,7 @@ var UserProfile = (function() {
       setName: setName,
       isLoggedIn: isLoggedIn,
       isEmployee: getIsEmployee,
-      libraryIDs: libraryIDs
+      getLibraryIDs: getLibraryIDs
     };
 })();
 

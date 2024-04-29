@@ -5,13 +5,13 @@ import BookList from './../Views/BookList';
 import SearchBar from './../Components/SearchBar';
 import DropDownFilterList from './../Components/DropDownFilterList';
 import BookInsertion from './../BookInsertion/BookInsertion';
+import UserProfile from './../Components/UserProfile';
 
 function BookView() {
     const [books, setBooks] = useState([]);
     const [searchString, setSearchString] = useState('');
-    const [selectedLibraries, setSelectedLibraries] = useState([]); //Need to auto select user's home library if available and propagate changes to DropDownFilterList
+    const [selectedLibraries, setSelectedLibraries] = useState(UserProfile.getLibraryIDs()); //Need to auto select user's home library if available and propagate changes to DropDownFilterList
     const [libraryOptions, setLibraryOptions] = useState([]); 
-    const [isModalOpen, setModalOpen] = useState(false); //Book insertion popup
 
     //Fetch library option data from backend
     useEffect(() => {
@@ -57,7 +57,9 @@ function BookView() {
   return (
       <div className="BookView">
           <SearchBar searchString={searchString} setSearchString={setSearchString} />
-          <DropDownFilterList filterOptions={libraryOptions} handleOptionUpdate={handleSelectedLibraries} buttonText={"Library"} />
+          {!UserProfile.isEmployee() && (
+              <DropDownFilterList filterOptions={libraryOptions} handleOptionUpdate={handleSelectedLibraries} buttonText={"Library"} />
+          )}
           <BookInsertion />
           <div className='booksView'>
               <BookList books={books} selectedLibraries={selectedLibraries} />
