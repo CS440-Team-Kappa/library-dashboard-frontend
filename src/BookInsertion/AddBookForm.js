@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import DropDownFilterList from '../Components/DropDownFilterList';
+import DropDownFilterList from './../Components/DropDownFilterList';
+import TitleInputSearch from './TitleInputSearch';
 import './AddBookForm.css';
 import UserProfile from './../Components/UserProfile';
 
@@ -99,6 +100,15 @@ const AddBookForm = ({ LibraryID }) => {
         setTimeout(() => setResponseMessage(''), 3000);
     }
 
+    const handleSearchSelect = (suggestedBook) => {
+        console.log('Selected Book:', suggestedBook); // Log the selected book data
+        setTitle(suggestedBook.label);
+        setISBN(suggestedBook.isbn);
+        setDescription(suggestedBook.description);
+        setAuthors(suggestedBook.authors || []);
+    }
+
+
     return (
         <>
             {
@@ -108,7 +118,8 @@ const AddBookForm = ({ LibraryID }) => {
                     <form className="AddForm" onSubmit={handleSubmit}>
                         <label className="Label">
                             Title
-                            <input required type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                <input required type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                <TitleInputSearch value={title} onChange={(e) => setTitle(e.target.value)} handleClick={(e) => handleSearchSelect(e)} />
                         </label>
                         <br />
                         <label className="Label">

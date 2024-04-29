@@ -22,7 +22,9 @@ const BookList = ({ books, selectedLibraries }) => {
     const handleRowClick = async (bookId) => {
         try {
             //Get book details
-            const bookDetailsResponse = await axios.get(`http://127.0.0.1:8000/bookdetail/${bookId}/`);
+            const params1 = new URLSearchParams();
+            params1.append('BookID', bookId);
+            const bookDetailsResponse = await axios.get(`http://127.0.0.1:8000/bookdetail/?${params1.toString()}`);
 
             //Set selected Library IDs as LibraryID (list) and BookID for parameters for book copy details fetching
             const params = new URLSearchParams();

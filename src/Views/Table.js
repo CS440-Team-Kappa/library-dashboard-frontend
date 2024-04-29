@@ -5,7 +5,7 @@ const Table = ({ headers, data, onRowClick }) => {
 
     //States to hold current page number and page row count
     const [currentPage, setCurrentPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [rowsPerPage, setRowsPerPage] = useState(8);
 
     //Calculate number of pages for given data
     const pageCount = Math.ceil(data.length / rowsPerPage);
