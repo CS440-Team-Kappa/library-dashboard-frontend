@@ -45,7 +45,9 @@ var UserProfile = (function() {
       setName: setName,
       isLoggedIn: isLoggedIn,
       isEmployee: getIsEmployee,
-      getLibraryIDs: getLibraryIDs
+      getLibraryIDs: getLibraryIDs,
+      setEmail: setEmail,
+      getEmail: getEmail
     };
 })();
 
