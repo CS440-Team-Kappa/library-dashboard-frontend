@@ -118,7 +118,6 @@ const AddBookForm = ({ LibraryID }) => {
                     <form className="AddForm" onSubmit={handleSubmit}>
                         <label className="Label">
                             Title
-                                <input required type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
                                 <TitleInputSearch value={title} onChange={(e) => setTitle(e.target.value)} handleClick={(e) => handleSearchSelect(e)} />
                         </label>
                         <br />

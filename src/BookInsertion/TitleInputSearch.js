@@ -10,7 +10,10 @@ const TitleInputSearch  = ({value, onChange, handleClick}) => {
     const fetchBookData = useEffect(() => {
         const fetchBookData = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/bookdetail/`);
+                const params = new URLSearchParams();
+                if (value)
+                    params.append('searchString', value);
+                const response = await axios.get(`http://127.0.0.1:8000/bookdetail/?${params.toString()}`);
                 if (response.data) {
                     const bookResponseData = response.data.map(book => ({
                         id: book.BookID,
@@ -20,7 +23,6 @@ const TitleInputSearch  = ({value, onChange, handleClick}) => {
                         authors: book.Authors.split(', ')
                     }));
                     setBookData(bookResponseData);
-                    console.log("book data: " + bookData);
                 }
                 else {
                     setBookData([]);
@@ -31,7 +33,7 @@ const TitleInputSearch  = ({value, onChange, handleClick}) => {
         };
 
         fetchBookData();
-    }, [value]);
+    }, [value, onChange]);
 
 
     return (
