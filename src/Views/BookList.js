@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Table from './Table';
 import Modal from './Modal';
+import CartInfo from './../Cart/CartInfo'
 
 const BookList = ({ books, selectedLibraries }) => {
     //Table Headers
@@ -52,7 +53,7 @@ const BookList = ({ books, selectedLibraries }) => {
                                     id: copy.BookCopyID, //Row ID
                                     values: [copy.LibraryName, copy.BookCopyID, copy.BookCondition, copy.CheckedOut] //Row data
                                 }))}
-                                onRowClick={() => { }} //Clicking bookCopy row currently does nothing
+                                onRowClick={() => {CartInfo.updateSelectedBookCopies()}} //Clicking bookCopy row currently does nothing
                             />
                         )}
                     </div>
