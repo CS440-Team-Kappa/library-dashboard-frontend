@@ -60,7 +60,9 @@ function BookView() {
           {!UserProfile.isEmployee() && (
               <DropDownFilterList filterOptions={libraryOptions} handleOptionUpdate={handleSelectedLibraries} buttonText={"Library"} />
           )}
-          <BookInsertion />
+          {UserProfile.isEmployee() && (
+              <BookInsertion />
+          )}
           <div className='booksView'>
               <BookList books={books} selectedLibraries={selectedLibraries} />
           </div>
