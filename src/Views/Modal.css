@@ -24,6 +24,10 @@
     overflow-x: hidden;
 }
 
+    .ModalContent h1 {
+        text-align: center;
+    }
+
 .CloseBtn {
     position: absolute;
     top: -2px;

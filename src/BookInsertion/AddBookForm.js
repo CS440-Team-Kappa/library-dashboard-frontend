@@ -77,15 +77,9 @@ const AddBookForm = ({ LibraryID }) => {
         selectedGenres.forEach(id => params.append('GenreID', id));
         try {
             const response = await axios.get(`http://127.0.0.1:8000/book/?${params.toString()}`);
-            const bookExists = response.data.BookExists;
+            const resultData = response.data
             // Check if book exists
-            if (bookExists) {
-                // Grab IDs
-                const bookID = response.data.BookID;
-                // Pass first LibraryID (don't know if it gets it from UserProfile)
-                const libraryID = LibraryID[0];
-                // Make a copy using bookID and libraryID
-                // Example: await axios.post('http://127.0.0.1:8000/book/copy/', { BookID: bookID, LibraryID: libraryID });
+            if (resultData) {
                 setResponseMessage('Book created successfully.');
             } else {
                 setResponseMessage(response.data.ResponseMessage);
