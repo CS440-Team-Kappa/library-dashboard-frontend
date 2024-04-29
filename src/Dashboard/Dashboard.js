@@ -17,7 +17,7 @@ function Dashboard({user, email, onLogout, onLogin}) {
             <BookView user={user} />
             <UserInfo name={user} email={email} />
             <CheckedOut user={user} />
-            <Cart user={user} />
+            <Cart />
         </div>
     )
 }

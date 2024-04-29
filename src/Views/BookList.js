@@ -53,7 +53,7 @@ const BookList = ({ books, selectedLibraries }) => {
                                     id: copy.BookCopyID, //Row ID
                                     values: [copy.LibraryName, copy.BookCopyID, copy.BookCondition, copy.CheckedOut] //Row data
                                 }))}
-                                onRowClick={() => {CartInfo.updateSelectedBookCopies()}} //Clicking bookCopy row currently does nothing
+                                onRowClick={(copyID) => CartInfo.updateSelectedBookCopies(copyID)} //Clicking bookCopy row currently does nothing
                             />
                         )}
                     </div>

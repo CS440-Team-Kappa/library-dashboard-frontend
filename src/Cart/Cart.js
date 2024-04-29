@@ -6,10 +6,20 @@ import CartInfo from "./CartInfo";
 import axios from 'axios';
 import Table from './../Views/Table'
 
-function Cart({selectedBookCopies}) {
+function Cart({}) {
 
     const [selectedCopyIDs, setSelectedCopyIDs] = useState(CartInfo.getSelectedBookCopies());
     const [selectedCopyInfo, setSelectedCopyInfo] = useState([]);
+
+
+    //update Cart when CartInfo changes
+    useEffect(() => {
+        const updateSelectedCopyIDs = (selectedCopyIDs) => {
+            setSelectedCopyIDs(selectedCopyIDs);
+        };
+
+        CartInfo.setUpdateElementFcn(updateSelectedCopyIDs);
+    }, []);
 
     //Fetch book copy option data from backend
     useEffect(() => {
@@ -29,7 +39,8 @@ function Cart({selectedBookCopies}) {
         };
 
         fetchCopyInfo();
-    }, []);
+    }, [selectedCopyIDs]);
+
 
     let cart;
     if (!UserProfile.isLoggedIn()) {
@@ -41,7 +52,7 @@ function Cart({selectedBookCopies}) {
                         <button className="cartButtons">Clear Cart</button>
                     </div>
                     <div className="BookCartView">
-                <Table headers={['Library', 'Title', 'Condition']} data={selectedCopyInfo} onRowClick={CartInfo.updateSelectedBookCopies()} />
+                <Table headers={['Library', 'Title', 'Condition']} data={selectedCopyInfo} onRowClick={(copyID) => CartInfo.updateSelectedBookCopies(copyID)}/>
                     </div>
                 </div>)
     }
