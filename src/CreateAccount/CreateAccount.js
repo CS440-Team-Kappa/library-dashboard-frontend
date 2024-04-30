@@ -1,7 +1,7 @@
 import "./CreateAccount.css";
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -12,7 +12,7 @@ function CreateAccount() {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
-
+  let Navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -26,6 +26,7 @@ function CreateAccount() {
     const params2 = new URLSearchParams();
     params2.append('MemberID', response.data.MemberID)
     axios.get(`http://127.0.0.1:8000/member-library/?${params2.toString()}`);
+    Navigate('/', { replace: true })
   }
 
   return (
@@ -73,7 +74,7 @@ function CreateAccount() {
               <input type="text" id="phonenumber" onChange={(e) => setPhoneNumber(e.target.value)} value={phoneNumber} required />
             </div>
           </div>
-          <a href='/login'><button enabled="true">Register</button></a>
+          <button enabled="true">Register</button>
         </form>
       </div>
     </div>

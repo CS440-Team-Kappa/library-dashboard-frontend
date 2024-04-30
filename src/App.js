@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './Dashboard/Dashboard';
 import Login from './Login/LoginPage';
 import CreateAccount from './CreateAccount/CreateAccount';
+import CreateEmployee from './CreateEmployee/CreateEmployee';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route exact path="/" element={<Dashboard /> } />
           <Route path="/login" element={<Login /> } />
           <Route path='/createaccount' element={<CreateAccount /> } />
+          <Route path='/createemployee' element={<CreateEmployee />} />
         </Routes>
       </BrowserRouter>
     </div>
