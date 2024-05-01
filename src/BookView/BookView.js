@@ -5,6 +5,7 @@ import BookList from './../Views/BookList';
 import SearchBar from './../Components/SearchBar';
 import DropDownFilterList from './../Components/DropDownFilterList';
 import BookInsertion from './../BookInsertion/BookInsertion';
+import BookUpdate from './../BookUpdate/BookUpdate';
 import UserProfile from './../Components/UserProfile';
 
 function BookView() {
@@ -68,7 +69,10 @@ function BookView() {
               <DropDownFilterList filterOptions={libraryOptions} handleOptionUpdate={handleSelectedLibraries} buttonText={"Library"} defaultSelection={UserProfile.getLibraryIDs()}/>
           )}
           {UserProfile.isEmployee() && (
-              <BookInsertion />
+              <div className="EmployeeBookButtons">
+                <BookInsertion />
+                <BookUpdate />
+              </div>
           )}
           <div className='booksView'>
               <BookList books={books} selectedLibraries={selectedLibraries} />

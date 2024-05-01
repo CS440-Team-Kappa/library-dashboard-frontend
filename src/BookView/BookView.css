@@ -35,3 +35,7 @@
     width: 99%;
     display: block;
 }
+
+.EmployeeBookButtons {
+    display: flex;
+}
