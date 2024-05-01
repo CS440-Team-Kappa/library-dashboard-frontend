@@ -12,7 +12,8 @@ function Actions() {
     const [selectedOption, setSelectedOption] = useState('createEmployee');
     const condition = UserProfile.isEmployee();
     const condition2 = !(UserProfile.isLoggedIn());
-  
+    const condition3 = UserProfile.isLoggedIn();
+    
     const handleOptionClick = (option) => {
       setSelectedOption(option);
       setModalOpen(true);
@@ -29,6 +30,11 @@ function Actions() {
                     <div>
             <a className='createAccount' href='/createaccount'>Create An Account</a>   
             <a className="login" href='/login'>Login</a>
+            </div>
+                ) : null}
+            {condition3 ? (
+                    <div>
+            <a className="login" href='/'>Logout</a>
             </div>
                 ) : null}
                 {condition ? (
