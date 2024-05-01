@@ -17,7 +17,14 @@ function BookView() {
     useEffect(() => {
         const fetchLibraryOptions = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/libraries/`);
+                const params = new URLSearchParams();
+                var endpoint = 'http://127.0.0.1:8000/libraries/'
+                if (UserProfile.isLoggedIn()) {
+                    UserProfile.getLibraryIDs().forEach(id => params.append('LibraryID', id));
+                    endpoint += `?${params.toString()}`;
+                }
+
+                const response = await axios.get(endpoint);
                 const libOptions = response.data.map(library => ({
                     id: library.LibraryID,
                     label: library.LibraryName
@@ -58,7 +65,7 @@ function BookView() {
       <div className="BookView">
           <SearchBar searchString={searchString} setSearchString={setSearchString} />
           {!UserProfile.isEmployee() && (
-              <DropDownFilterList filterOptions={libraryOptions} handleOptionUpdate={handleSelectedLibraries} buttonText={"Library"} />
+              <DropDownFilterList filterOptions={libraryOptions} handleOptionUpdate={handleSelectedLibraries} buttonText={"Library"} defaultSelection={UserProfile.getLibraryIDs()}/>
           )}
           {UserProfile.isEmployee() && (
               <BookInsertion />
