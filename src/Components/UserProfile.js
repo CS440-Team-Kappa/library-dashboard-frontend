@@ -58,7 +58,8 @@ var UserProfile = (function() {
       getLibraryIDs: getLibraryIDs,
       setEmail: setEmail,
       getEmail: getEmail,
-      setIsEmployee: setIsEmployee
+      setIsEmployee: setIsEmployee,
+      setLibraryIDs: setLibraryIDs
 
 
     };
