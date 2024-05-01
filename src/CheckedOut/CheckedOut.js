@@ -10,7 +10,9 @@ function CheckedOut() {
     useEffect(() => {
         const fetchMbcBooks = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/memberbookcopies/`);
+                const params = new URLSearchParams();
+                params.append('MemberID', UserProfile.getMemberID());
+                const response = await axios.get(`http://127.0.0.1:8000/memberbookcopies/?${params.toString()}`);
                 setMbcBooks(response.data);
             } catch (e) {
             console.log('Error fetching book options: ', e);
