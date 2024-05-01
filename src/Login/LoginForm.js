@@ -30,6 +30,10 @@ function LoginForm() {
                     UserProfile.setIsEmployee();
                 }
             })
+            params.append('MemberID', response.data.MemberID);
+            const response3 = await axios.get(`http://127.0.0.1:8000/get-member-library/?${params.toString()}`);
+            UserProfile.setLibraryIDs(response3.data.LibraryID)
+            console.log(UserProfile.getLibraryIDs())
             Navigate('/', { replace: true })
         }
       }
