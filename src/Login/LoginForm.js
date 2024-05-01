@@ -24,6 +24,12 @@ function LoginForm() {
             UserProfile.setName(response.data.FirstName);
             UserProfile.setEmail(response.data.Email);
             UserProfile.setMemberID(response.data.MemberID);
+            const response2 = await axios.get(`http://127.0.0.1:8000/employees/?`);
+            response2.data.forEach(function(employee){
+                if(employee.MemberID === response.data.MemberID) {
+                    UserProfile.setIsEmployee();
+                }
+            })
             Navigate('/', { replace: true })
         }
       }
