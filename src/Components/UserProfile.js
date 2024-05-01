@@ -45,8 +45,8 @@ var UserProfile = (function() {
         return memberID;
     }
 
-    var setMemberID = function (memberID) {
-        memberID = memberID;
+    var setMemberID = function (memID) {
+        memberID = memID;
     }
     return {
       getName: getName,

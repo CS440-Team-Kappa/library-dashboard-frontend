@@ -19,6 +19,20 @@ function CheckedOut() {
 
         fetchMbcBooks();
     }, []);
+
+    //Checks-in a book by removing the corresponding entry in the MemberBookCopy Table
+    const handleCheckIn = async (bcID) => {
+        try {
+            const params = new URLSearchParams();
+            params.append('BCID', bcID);
+            params.append('MID', UserProfile.getMemberID());
+            console.log('member id: ' + UserProfile.getMemberID());
+            await axios.get(`http://127.0.0.1:8000/removembc/?${params.toString()}`);
+            setMbcBooks(mbcBooks.filter(mbc => mbc.BookCopyID !== bcID));
+        } catch (e) {
+            console.log('Error checking in book: ', e);
+        }
+    }
   
  
     if (!UserProfile.isLoggedIn()) {  
@@ -31,16 +45,17 @@ function CheckedOut() {
                     <table>
                         <thead>
                             <tr>
-                                <th class="fontSizeHead">Book Title</th>
-                                <th class="fontSizeHead">Check-out Date</th>
-                                <th class="fontSizeHead">Due Date</th>
+                                <th className="fontSizeHead">Book Title</th>
+                                <th className="fontSizeHead">Check-out Date</th>
+                                <th className="fontSizeHead">Due Date</th>
                             </tr>
                         </thead>
                         <tbody>
                         <tr key={mbcBooks.BookCopyID}>
-                                    <td class="fontSizeTitle">{mbc.Title}</td>
-                                    <td  class="fontSize">{JSON.stringify(mbc.OutDate).substring(1,11)}</td>
-                                    <td  class="fontSize">{JSON.stringify(mbc.DueDate).substring(1,11)}</td>
+                                    <td className="fontSizeTitle">{mbc.Title}</td>
+                                    <td  className="fontSize">{JSON.stringify(mbc.OutDate).substring(1,11)}</td>
+                                    <td  className="fontSize">{JSON.stringify(mbc.DueDate).substring(1,11)}</td>
+                                 <button className="checkInButton" onClick={() => handleCheckIn(mbc.BookCopyID)}>Check-In</button>
                                 </tr>
                         </tbody>
                     </table>
