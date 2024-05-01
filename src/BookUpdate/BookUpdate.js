@@ -21,8 +21,8 @@ const BookUpdate = () => {
                 <Modal isOpen={isModalOpen} onClose={handleModalClose}>
                     <div>
                         <div className="ModalMainContent">
-                            <h1 className="ModalTitle">Add a Book</h1>
-                            {UpdateBookForm}
+                            <h1 className="ModalTitle">Update Book Info</h1>
+                            <UpdateBookForm />
                         </div>
                     </div>
                 </Modal>
