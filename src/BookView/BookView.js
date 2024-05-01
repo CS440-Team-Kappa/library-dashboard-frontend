@@ -65,7 +65,7 @@ function BookView() {
       <div className="BookView">
           <SearchBar searchString={searchString} setSearchString={setSearchString} />
           {!UserProfile.isEmployee() && (
-              <DropDownFilterList filterOptions={libraryOptions} handleOptionUpdate={handleSelectedLibraries} buttonText={"Library"} />
+              <DropDownFilterList filterOptions={libraryOptions} handleOptionUpdate={handleSelectedLibraries} buttonText={"Library"} defaultSelection={UserProfile.getLibraryIDs()}/>
           )}
           {UserProfile.isEmployee() && (
               <BookInsertion />
