@@ -4,9 +4,25 @@ import "./Cart.css";
 import UserProfile from "../Components/UserProfile";
 import CartInfo from "./CartInfo";
 import axios from 'axios';
-import Table from './../Views/Table'
+import CartTable from './../Views/Table'
 
 function Cart({}) {
+
+    const checkOutCart = async() => {
+        try {
+            const params = new URLSearchParams();
+            params.append('MemberID', UserProfile.getMemberID());
+            selectedCopyIDs.forEach(id => params.append('BookID', id));
+            //const checkOutResponse = await axios.get(`http://127.0.0.1:8000/checkout-book/?${params.toString()}`);
+            clearCart();
+        } catch (e) {
+            console.error('Failed to check out books: ', e)
+        }
+    }
+
+    const clearCart = () => {
+        setSelectedCopyIDs([]);
+    }
 
     const [selectedCopyIDs, setSelectedCopyIDs] = useState(CartInfo.getSelectedBookCopies());
     const [selectedCopyInfo, setSelectedCopyInfo] = useState([]);
@@ -48,11 +64,11 @@ function Cart({}) {
     } else {
         cart =  (<div className="Cart">
                     <div className="CartActions">
-                        <button className="cartButtons">Check Out</button>
-                        <button className="cartButtons">Clear Cart</button>
+                        <button className="cartButtons" onClick={checkOutCart}>Check Out</button>
+                        <button className="cartButtons" onClick={clearCart}>Clear Cart</button>
                     </div>
                     <div className="BookCartView">
-                <Table headers={['Library', 'Title', 'Condition']} data={selectedCopyInfo} onRowClick={(copyID) => CartInfo.updateSelectedBookCopies(copyID)}/>
+                <CartTable headers={['Library', 'Title', 'Condition']} data={selectedCopyInfo} onRowClick={(copyID) => CartInfo.updateSelectedBookCopies(copyID)}/>
                     </div>
                 </div>)
     }
