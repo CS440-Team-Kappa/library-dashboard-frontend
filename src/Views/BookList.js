@@ -5,7 +5,7 @@ import Modal from './Modal';
 import CartInfo from './../Cart/CartInfo'
 import UserProfile from './../Components/UserProfile';
 
-const BookList = ({ books, selectedLibraries }) => {
+const BookList = ({ books, selectedLibraries, fetchFcn }) => {
     //Table Headers
     const headers = ['Title', 'Author', 'Available Copies'];
 
@@ -41,6 +41,7 @@ const BookList = ({ books, selectedLibraries }) => {
 
             //Update book copy details after deletion
             await fetchBookCopyDetails(bookDetails.BookID);
+            await fetchFcn();
         } catch (e) {
             console.log('Error deleting book copy: ', e);
         }
@@ -78,12 +79,10 @@ const BookList = ({ books, selectedLibraries }) => {
                                 headers={UserProfile.isEmployee() ? ['Library', 'Book Copy ID', 'Condition', 'Available', 'Delete'] : ['Library', 'Book Copy ID', 'Condition', 'Available']}
                                 data={bookCopyDetails.map(copy => ({
                                     id: copy.BookCopyID, //Row ID
-                                    values: UserProfile.isEmployee() ? [copy.LibraryName, copy.BookCopyID, copy.BookCondition, copy.CheckedOut, <button onClick={() => handleDelete(copy.BookCopyID)}>Delete</button>] : [copy.LibraryName, copy.BookCopyID, copy.BookCondition, copy.CheckedOut] //Row data
+                                    values: UserProfile.isEmployee() ? [copy.LibraryName, copy.BookCopyID, copy.BookCondition, copy.CheckedOut, <button onMouseDown={(e) => {e.stopPropagation(); handleDelete(copy.BookCopyID)}}>Delete</button>] : [copy.LibraryName, copy.BookCopyID, copy.BookCondition, copy.CheckedOut] //Row data
                                 }))}
                                 onRowClick={(copyID) => {
-                                    if (!data[copyID].CheckedOut) {
                                         CartInfo.updateSelectedBookCopies(copyID)}
-                                    }
                                 }
                             />
                         )}

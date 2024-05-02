@@ -46,7 +46,7 @@ function Cart({}) {
     if (!UserProfile.isLoggedIn()) {
         cart = <h2 className="loginAlert">Please log in to check out books!</h2>
     } else {
-        cart =  (<div className="Cart">
+        cart =  (<div>
                     <div className="CartActions">
                         <button className="cartButtons">Check Out</button>
                         <button className="cartButtons">Clear Cart</button>
@@ -58,7 +58,7 @@ function Cart({}) {
     }
     
     return (
-        <div>
+        <div className="Cart">
             {cart}
         </div>
     )

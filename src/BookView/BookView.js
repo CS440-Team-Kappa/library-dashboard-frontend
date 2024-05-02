@@ -40,20 +40,21 @@ function BookView() {
     }, []);
 
     //Fetch book data from backend
-    useEffect(() => {
-        const fetchBooks = async () => {
-            try {
-                //Set selected Library IDs as LibraryID (list) for parameters and searchString as searchString
-                const params = new URLSearchParams();
-                params.append('searchString', searchString);
-                selectedLibraries.forEach(id => params.append('LibraryID', id));
-                const response = await axios.get(`http://127.0.0.1:8000/booklists/?${params.toString()}`);
-                setBooks(response.data);
-            } catch (e) {
-                console.error('Error fetching books: ', e);
-            }
-        };
+    const fetchBooks = async () => {
+        try {
+            //Set selected Library IDs as LibraryID (list) for parameters and searchString as searchString
+            const params = new URLSearchParams();
+            params.append('searchString', searchString);
+            selectedLibraries.forEach(id => params.append('LibraryID', id));
+            const response = await axios.get(`http://127.0.0.1:8000/booklists/?${params.toString()}`);
+            setBooks(response.data);
+        } catch (e) {
+            console.error('Error fetching books: ', e);
+        }
+    };
 
+    //auto update book data
+    useEffect(() => {
         fetchBooks();
     }, [searchString, selectedLibraries]);
 
@@ -75,7 +76,7 @@ function BookView() {
               </div>
           )}
           <div className='booksView'>
-              <BookList books={books} selectedLibraries={selectedLibraries} />
+              <BookList books={books} selectedLibraries={selectedLibraries} fetchFcn={fetchBooks} />
           </div>
     </div>
   );
