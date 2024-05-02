@@ -149,7 +149,7 @@ const AddBookForm = ({ LibraryID }) => {
                         </label>
                         <DropDownFilterList filterOptions={genreOptions} handleOptionUpdate={handleSelectedGenres} buttonText={"Genres"} />
                         <br />
-                        <button type="submit">Submit</button>
+                        <button type="submit" className='update-btn'>Update</button>
                     </form>
                 )}
         </>);
