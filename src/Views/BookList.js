@@ -48,6 +48,7 @@ const BookList = ({ books, selectedLibraries }) => {
                         <h1 class="ModalTitle">{bookDetails.Title || 'Book Details'}</h1>
                         <p class="ModalText">Author: {bookDetails.Authors}</p>
                         <p class="ModalText">ISBN: {bookDetails.ISBN}</p>
+                        <p class="ModalText">Description: {bookDetails.Description}</p>
                         {bookCopyDetails && (
                             <Table
                                 headers={['Library', 'Book Copy ID', 'Condition', 'Available']}
