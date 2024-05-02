@@ -24,7 +24,6 @@ const BookUpdate = () => {
                             <h1 className="ModalTitle">Update Book Info</h1>
                             <UpdateBookForm />
                         </div>
-                        <button type="submit" className="update-btn">Update</button>
                     </div>
                 </Modal>
             )}
