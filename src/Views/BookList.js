@@ -80,7 +80,11 @@ const BookList = ({ books, selectedLibraries }) => {
                                     id: copy.BookCopyID, //Row ID
                                     values: UserProfile.isEmployee() ? [copy.LibraryName, copy.BookCopyID, copy.BookCondition, copy.CheckedOut, <button onClick={() => handleDelete(copy.BookCopyID)}>Delete</button>] : [copy.LibraryName, copy.BookCopyID, copy.BookCondition, copy.CheckedOut] //Row data
                                 }))}
-                                onRowClick={(copyID) => CartInfo.updateSelectedBookCopies(copyID)}
+                                onRowClick={(copyID) => {
+                                    if (!data[copyID].CheckedOut) {
+                                        CartInfo.updateSelectedBookCopies(copyID)}
+                                    }
+                                }
                             />
                         )}
                     </div>

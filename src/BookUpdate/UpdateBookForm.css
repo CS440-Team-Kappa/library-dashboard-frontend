@@ -3,31 +3,50 @@
     flex-direction: column;
 }
 
-    .UpdateForm Label {
-        margin-bottom: 10px;
-    }
+.UpdateForm Label {
+    margin-bottom: 10px;
+}
 
-    .UpdateForm input[type="text"],
-    .UpdateForm textarea {
-        width: 100%;
-        padding: 2px;
-        margin-top: 2px;
-        margin-bottom: 2px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
+.UpdateForm input[type="text"],
+.UpdateForm textarea {
+    width: 100%;
+    padding: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
 
-    .UpdateForm button {
-        padding: 8px 16px;
-        margin-top: 10px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
+.UpdateForm .update-btn {
+    width: 100%;
+    height: 45px;
+    background: #007bff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    /* Adds shadow effect to button */
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    /* Hand icon when hovering over Login */
+    cursor: pointer;
+    /* Increases Login text size */
+    font-size: 16px;
+    /* Makes Login text dark gray */
+    color: #333;
+    /* Makes Login text bold */
+    font-weight: 600;
+}
 
-        .UpdateForm button:hover {
-            background-color: #0056b3;
-        }
+.UpdateForm button {
+    padding: 8px 16px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.UpdateForm button:hover {
+    background-color: #0056b3;
+}

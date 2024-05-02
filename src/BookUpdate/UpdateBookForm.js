@@ -81,7 +81,7 @@ const UpdateBookForm = () => {
                             <textarea required value={description} onChange={(e) => setDescription(e.target.value)} />
                         </label>
                         <br />
-                        <button type="submit">Submit</button>
+                        <button type="submit" className="update-btn">Update</button>
                     </form>
                 )}
         </>);
