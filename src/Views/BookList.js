@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Table from './Table';
 import Modal from './Modal';
 import CartInfo from './../Cart/CartInfo'
+import UserProfile from './../Components/UserProfile';
 
 const BookList = ({ books, selectedLibraries }) => {
     //Table Headers
@@ -18,6 +19,33 @@ const BookList = ({ books, selectedLibraries }) => {
     const [bookDetails, setBookDetails] = useState({});
     const [bookCopyDetails, setBookCopyDetails] = useState([]);
 
+    // Function to fetch book copy details
+    const fetchBookCopyDetails = async (bookId) => {
+        try {
+            const params = new URLSearchParams();
+            params.append('BookID', bookId);
+            selectedLibraries.forEach(id => params.append('LibraryID', id));
+            const bookCopyDetailsResponse = await axios.get(`http://127.0.0.1:8000/bookcopydetail/?${params.toString()}`);
+            setBookCopyDetails(bookCopyDetailsResponse.data);
+        } catch (e) {
+            console.error('Failed to fetch book copy details: ', e);
+        }
+    };
+
+    //Delete Book Copy for employees
+    const handleDelete = async (copyID) => {
+        try {
+            const params = new URLSearchParams();
+            params.append('BookCopyID', copyID);
+            const deleteBookCopyResponse = await axios.get(`http://127.0.0.1:8000/deletebookcopy/?${params.toString()}`);
+
+            //Update book copy details after deletion
+            await fetchBookCopyDetails(bookDetails.BookID);
+        } catch (e) {
+            console.log('Error deleting book copy: ', e);
+        }
+    };
+
     //Open modal containing book and book copy details
     const handleRowClick = async (bookId) => {
         try {
@@ -25,14 +53,10 @@ const BookList = ({ books, selectedLibraries }) => {
             const params1 = new URLSearchParams();
             params1.append('BookID', bookId);
             const bookDetailsResponse = await axios.get(`http://127.0.0.1:8000/bookdetail/?${params1.toString()}`);
-
-            //Set selected Library IDs as LibraryID (list) and BookID for parameters for book copy details fetching
-            const params = new URLSearchParams();
-            params.append('BookID', bookId);
-            selectedLibraries.forEach(id => params.append('LibraryID', id));
-            const bookCopyDetailsResponse = await axios.get(`http://127.0.0.1:8000/bookcopydetail/?${params.toString()}`);
             setBookDetails(bookDetailsResponse.data);
-            setBookCopyDetails(bookCopyDetailsResponse.data);
+
+            //Get book copy details
+            await fetchBookCopyDetails(bookId);
             setModalOpen(true);
         } catch (e) {
             console.error('Failed to fetch book details: ', e);
@@ -51,10 +75,10 @@ const BookList = ({ books, selectedLibraries }) => {
                         <p class="ModalText">Description: {bookDetails.Description}</p>
                         {bookCopyDetails && (
                             <Table
-                                headers={['Library', 'Book Copy ID', 'Condition', 'Available']}
+                                headers={UserProfile.isEmployee() ? ['Library', 'Book Copy ID', 'Condition', 'Available', 'Delete'] : ['Library', 'Book Copy ID', 'Condition', 'Available']}
                                 data={bookCopyDetails.map(copy => ({
                                     id: copy.BookCopyID, //Row ID
-                                    values: [copy.LibraryName, copy.BookCopyID, copy.BookCondition, copy.CheckedOut] //Row data
+                                    values: UserProfile.isEmployee() ? [copy.LibraryName, copy.BookCopyID, copy.BookCondition, copy.CheckedOut, <button onClick={() => handleDelete(copy.BookCopyID)}>Delete</button>] : [copy.LibraryName, copy.BookCopyID, copy.BookCondition, copy.CheckedOut] //Row data
                                 }))}
                                 onRowClick={(copyID) => CartInfo.updateSelectedBookCopies(copyID)}
                             />
