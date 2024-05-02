@@ -44,10 +44,10 @@ function LoginForm() {
             <div className="login-containment">
                 <h1>Login</h1>
                 <div className="login-input">
-                <input type="text" id="Email" ref={userRef} onChange={(e) => setEmail1(e.target.value)} value={email} required />
+                <input type="text" id="Email" placeholder="Email" ref={userRef} onChange={(e) => setEmail1(e.target.value)} value={email} required />
                 </div>
                 <div className="login-input">
-                <input type="password" id="password" onChange={(e) => setPwd(e.target.value)} value={pwd} required />
+                <input type="password" id="password" placeholder="Password" onChange={(e) => setPwd(e.target.value)} value={pwd} required />
                 </div>
                 <button type="submit" className="submit-btn">Login</button>
                 <div className="create-account-link">
