@@ -147,7 +147,7 @@ const AddBookForm = ({ LibraryID }) => {
                             ))}
                             <button type="button" onClick={addAuthorField}>Add Author</button>
                         </label>
-                        <DropDownFilterList filterOptions={genreOptions} handleOptionUpdate={handleSelectedGenres} buttonText={"Genres"} />
+                            <DropDownFilterList filterOptions={genreOptions} handleOptionUpdate={handleSelectedGenres} buttonText={"Genres"} defaultSelection={[]} />
                         <br />
                         <button type="submit" className='update-btn'>Update</button>
                     </form>

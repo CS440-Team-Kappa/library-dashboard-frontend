@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './CSS/DropDownFilterList.css';
 
-const DropDownFilterList = ({ filterOptions, handleOptionUpdate, buttonText }) => {
+const DropDownFilterList = ({ filterOptions, handleOptionUpdate, buttonText, defaultSelection }) => {
     //Track whether drop-down list is open
     const [isOpen, setIsOpen] = useState(false);
 
     //Track and update currently selected options
-    const [selectedOptions, setSelectedOptions] = useState([]);
+    const [selectedOptions, setSelectedOptions] = useState(defaultSelection);
 
     //Update selected options
     const handleOptionToggle = (optionID) => {

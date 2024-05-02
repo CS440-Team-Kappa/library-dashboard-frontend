@@ -1,7 +1,7 @@
 var UserProfile = (function() {
     var name = "";
     var email = "";
-    var isEmployee = false;
+    var isEmployee = true;
     var libraryIDs = [1];
     var memberID;
   
