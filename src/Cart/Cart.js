@@ -13,7 +13,7 @@ function Cart({}) {
             const params = new URLSearchParams();
             params.append('MemberID', UserProfile.getMemberID());
             selectedCopyIDs.forEach(id => params.append('BookID', id));
-            //const checkOutResponse = await axios.get(`http://127.0.0.1:8000/checkout-book/?${params.toString()}`);
+            await axios.get(`http://127.0.0.1:8000/checkout-book/?${params.toString()}`);
             clearCart();
         } catch (e) {
             console.error('Failed to check out books: ', e)

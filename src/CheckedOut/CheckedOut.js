@@ -4,9 +4,11 @@ import BookList from "../Views/BookList";
 import "./CheckedOut.css"
 import UserProfile from "../Components/UserProfile";
 import Table from '../Views/Table';
+import CartInfo from '../Cart/CartInfo';
 
 function CheckedOut() {
-    const [mbcBooks,setMbcBooks]= useState([]);
+    const [mbcBooks, setMbcBooks] = useState([]);
+
     useEffect(() => {
         const fetchMbcBooks = async () => {
             try {
