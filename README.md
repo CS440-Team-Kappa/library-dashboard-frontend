@@ -1,4 +1,4 @@
-# Library Dashboard Project
+# Library Dashboard Project Front-End
 
 Welcome to our Library Dashboard project, built with ReactJS. This repository contains the front-end component of our comprehensive library management system.
 
