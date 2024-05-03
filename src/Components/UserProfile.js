@@ -1,7 +1,7 @@
 var UserProfile = (function() {
     var name = "";
     var email = "";
-    var isEmployee = true;
+    var isEmployee = false;
     var libraryIDs = [1];
     var memberID;
   
@@ -25,8 +25,8 @@ var UserProfile = (function() {
       return name !== "";
     }
 
-    var setLibraryIDs = function (libraryIDs) {
-        libraryIDs = libraryIDs;
+    var setLibraryIDs = function (newLibraryIDs) {
+        libraryIDs = newLibraryIDs;
     }
 
     var getLibraryIDs = function () {
@@ -60,8 +60,6 @@ var UserProfile = (function() {
       getEmail: getEmail,
       setIsEmployee: setIsEmployee,
       setLibraryIDs: setLibraryIDs
-
-
     };
 })();
 
